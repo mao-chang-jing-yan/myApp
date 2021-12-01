@@ -1,19 +1,13 @@
 import {constants} from "./index";
 import {GET} from "../../../service/httpServier/http";
 
-// export const changeSearchStr = (str) => {
-//     return {
-//         type: constants.CHANGE_SEARCH_STR,
-//         value: str
-//     }
-// }
-
-export const changeListType = (type) => {
+export const changeSearchStr = (str) => {
     return {
-        type: constants.CHANGE_LIST_TYPE,
-        value: type
+        type: constants.CHANGE_SEARCH_STR,
+        value: str
     }
 }
+
 
 
 

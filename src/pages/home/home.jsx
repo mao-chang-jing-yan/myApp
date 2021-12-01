@@ -2,12 +2,14 @@ import {Component, Fragment} from 'react'
 import {View, Text, Swiper, SwiperItem, Image, Input, PageMeta, NavigationBar, ScrollView} from '@tarojs/components'
 import './home.scss'
 import {connect} from "react-redux";
-import {withRouter} from "react-router-dom";
 import {actionCreators} from "./store";
 import Taro from "@tarojs/taro";
-import productItem from "../../components/productItem/productItem";
-
-// require("../../tmp/imgs/img/slide.jpg")
+import "taro-ui/dist/style/components/flex.scss";
+import "taro-ui/dist/style/components/nav-bar.scss";
+import "taro-ui/dist/style/components/icon.scss";
+import {AtNavBar} from "taro-ui";
+import productList, {productList2} from "../../components/productList/productList";
+import {changeListType} from "./store/actionCreators";
 
 class Home extends Component {
     swiperImages = [
@@ -15,26 +17,35 @@ class Home extends Component {
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
     ]
+    tuijianListd = [
+        {name: "闲置数码", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "书籍教材", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "鞋服配饰", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "全部", imgUrl: require("../../tmp/imgs/img/all.png")},
+    ]
 
     render() {
         return (
             <Fragment>
-                <View className={"top"}>
 
-                    <View className={"search"}>
-                        <Input
-                            className={"input"}
-                            type={"text"}
-                            value={this.props.searchStr}
-                            onInput={(e) => this.props.changeSearchStr(e)}
-                            placeholder={"搜索关键词"}
-                        />
-                    </View>
+                <ScrollView scrollY={true}>
 
-                    <View className="swiper-box">
+                    <View className={"top"}>
+
+
+                        <View className={"search"}>
+                            <Input
+                                className={"input"}
+                                type={"text"}
+                                value={""}
+                                onClick={() => this.props.goTo1()}
+                                onInput={() => this.props.goTo1()}
+                                placeholder={"搜索关键词"}
+                            />
+                        </View>
 
                         <Swiper
-                            className='test-h'
+                            className={"swiper"}
                             indicatorColor='#999'
                             indicatorActiveColor='#333'
                             interval={3000}
@@ -45,14 +56,13 @@ class Home extends Component {
 
                             {this.swiperImages.map((item, index) => {
                                 return (
-                                    <SwiperItem itemId={index} key={index}>
-                                        <View className='demo'>
-                                            <Image
-                                                className={"image"}
-                                                src={item}
-                                                onClick={this.props.sw1}
-                                            />
-                                        </View>
+                                    <SwiperItem itemId={index} key={"index" + index}>
+                                        <Image
+                                            className={"swiper-item-image"}
+                                            src={item}
+                                            onClick={this.props.sw1}
+                                            // style={{height: "100%",width:"100%"}}
+                                        />
                                     </SwiperItem>
                                 )
 
@@ -61,14 +71,39 @@ class Home extends Component {
 
                         </Swiper>
                     </View>
-                </View>
+
+                    <View className={"inner1"}>
 
 
-                <ScrollView scrollY={"true"}>
+                        {
+                            tuijianList(this.props, this.tuijianListd)
+                        }
 
-                    {
-                        productItem(this.props, this.props.products)
-                    }
+                        <View style={{fontSize: "15px", fontWeight: "500"}}>
+                            <View style={{
+                                float: "left",
+                                fontStyle: "italic",
+                                color: "#f37f66",
+                            }}
+                            >最新</View>发布｜最新二手信息
+                            <View style={{float: "right"}} onClick={()=>{
+                                this.props.changeListType(this.props.listType)}}>
+                                修改列表格式
+                            </View>
+                        </View>
+
+                        <View className={"products"}>
+                            {
+                                this.props.listType === 0 ?
+                                    productList2(this.props, this.props.products)
+                                    : productList(this.props, this.props.products)
+                            }
+
+                        </View>
+
+
+                    </View>
+
                 </ScrollView>
 
 
@@ -77,12 +112,40 @@ class Home extends Component {
     }
 }
 
+
+const tuijianList = (props, List) => {
+    return (
+        <View className='at-row at-row__justify--around tuijianList'>
+            {
+                List.map((item, index) => {
+                    if (index < 4) {
+                        return (
+                            <View
+                                key={item.name + index}
+                                className='at-col at-col-2 tuijianList-item'
+                            >
+                                <View className={"image-box"}>
+                                    <Image className={"image"} src={item.imgUrl}/>
+                                </View>
+                                <View className={"text"}>
+                                    {item.name}
+                                </View>
+                            </View>
+                        )
+                    }
+                })
+            }
+        </View>
+    )
+}
+
 const mapStateToProps = (state) => {
     const home = state.get("home")
     return {
-        searchStr: home.get("searchStr"),
-        products: home.get("products").toJS()
-        // currentPageUrl:state.currentPageUrl
+        // searchStr: home.get("searchStr"),
+        products: home.get("products").toJS(),
+        listType: home.get("listType"),
+        // currentPageUrl:state.currentPageUrl7
     }
 }
 const mapDispatchToProp = (dispatch) => {
@@ -96,17 +159,24 @@ const mapDispatchToProp = (dispatch) => {
             // dispatch(action)
         },
         changeSearchStr(e) {
-            dispatch(actionCreators.changeSearchStr(e.detail.value))
+            // dispatch(actionCreators.changeSearchStr(e.detail.value))
         },
-        sw(){
+        sw(id) {
             Taro.navigateTo({
-                url: "/pages/detail/detail"
+                url: "/pages/detail/detail?id=" + id
             }).then()
         },
-        sw1(){
+        goTo1() {
             Taro.navigateTo({
                 url: "/pages/search/search"
             }).then()
+        },
+        changeListType(listType){
+            if (listType ===0){
+                dispatch(actionCreators.changeListType(1))
+            }else {
+                dispatch(actionCreators.changeListType(0))
+            }
         }
     }
 }

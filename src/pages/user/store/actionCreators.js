@@ -1,99 +1,83 @@
-// import axios,{AxiosRequestConfig} from "axios";
-//
-// export const we = ()=>{
-//     return (dispatch)=>{
-//
-//         axios.defaults.headers.common.Authorization = "my-awesome-token";
-//         axios.defaults.baseURL = "http://127.0.0.1:8002/api";
-//         axios.get("/v1/web/user/query",{
-//             method: "GET",
-//             // url: `http://127.0.0.1:8002/api/v1`,
-//             // data: null,
-//             headers: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//             }
-//         } ).then(res => {
-//             console.log(res)
-//         }).catch(err => {
-//             console.log(err)
-//         })
-//     }
-// }
-
-
 import {constants} from "./index";
-export const changeOpenId = (openid) => {
-    console.log(openid)
+import {api, http} from "../../../service/httpServier";
+import Taro from "@tarojs/taro";
+
+export const changeAvaUrl = (avaUrl) => {
     return {
-        type: constants.CHANGE_OPENID,
-        value: openid
+        type: constants.CHANGE_AVA_URL,
+        value: avaUrl
     }
 }
 
-export const changeInputValue = (e) => {
-
+export const changeToken = (token) => {
     return {
-        type: constants.CHANGE_INPUT_VALUE,
-        value: e
+        type: constants.CHANGE_TOKEN,
+        value: token
     }
 }
 
-export const changeSearchParams = (key, value) => {
-    let params = {
-        key: key,
-        value: value
-    }
-
+export const changeUserName = (userName) => {
     return {
-        type: constants.CHANGE_SEARCH_PARAMS,
-        value: params
-    }
-}
-export const changePagination = (index, size, total) => {
-    const p = {
-        current: index,
-        pageSize: size,
-        total: total
-    }
-    return {
-        type: constants.CHANGE_PAGINATION,
-        value: p
+        type: constants.CHANGE_USER_NAME,
+        value: userName
     }
 }
 
-export const changeList = (data) => {
-    // console.log(data)
-
+export const changeUserInfo = (data) => {
     return {
-        type: constants.CHANGE_LIST_DATA,
+        type: constants.CHANGE_USER_INFO,
         value: data
     }
 }
 
-
-
-
-export const changeVisible = (bool) => {
+export const changeOpenID = (open_id) => {
     return {
-        type: constants.CHANGE_VISIBLE,
-        value: bool
+        type: constants.CHANGE_OPEN_ID,
+        value: open_id
     }
 }
 
-export const changeUserInfo = (value) => {
+export const changeIsLogin = (isLogin) => {
     return {
-        type: constants.CHANGE_USER_INFO,
-        value: value
+        type: constants.CHANGE_IS_LOGIN,
+        value: isLogin
+    }
+}
+
+export const getUserInfo = () => {
+    return (dispatch, getState) => {
+        let user = http.GET(api.getUserInfo, {});
+        if (user === null) {
+            return
+        }
+        dispatch(changeUserInfo(user));
     }
 }
 
 
+// 请求服务端获取openid函数
+export const handleLogin = name => {
 
+    return async (dispatch, getData) => {
 
-export const changeDeviceInfo = (data)=>{
-    return{
-        type:constants.CHANGE_DEVICE_INFO,
-        value:data
+        console.log("getData", getData)
+        // let res = await Taro.login({});
+        // console.log("code", res.code)
+        // if (res.code === undefined) {
+        //     return
+        // }
+        //
+        // let data = await http.GET(api.login, {code: res.code, name: "name"});
+        // if (data === null) {
+        //     return
+        // }
+        // console.log("data = - ", data)
+        //
+        // dispatch(changeOpenID(data.openid))
     }
-}
+};
+
+
+
+
 

@@ -3,19 +3,18 @@ import * as constants from "./actionTypes";
 
 const defaultState = fromJS({
     searchStr: "",
-    listType: 0,
     products: [
         {
             id: 0,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "电脑💻",
             userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            detail: "ufhgusdighfughfdiughdfiu",
+            detail :"ufhgusdighfughfdiughdfiu",
             userName: "2312",
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -24,7 +23,7 @@ const defaultState = fromJS({
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -33,7 +32,7 @@ const defaultState = fromJS({
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -42,7 +41,7 @@ const defaultState = fromJS({
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -51,7 +50,7 @@ const defaultState = fromJS({
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -60,7 +59,7 @@ const defaultState = fromJS({
             price: 123,
             oldPrice: 90,
             isLike: 1,
-        }, {
+        },{
             id: 1,
             imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "2312",
@@ -90,16 +89,15 @@ export default (state = defaultState, action) => {
         //
         //     state = state.setIn(['tableData'], fromJS(action.value))
 
-        // console.log("state",state.get("tableData"))
+            // console.log("state",state.get("tableData"))
 
-        // state.merge({
-        //     "tableData":action.value.valueOf()
-        // })
-        // break
+            // state.merge({
+            //     "tableData":action.value.valueOf()
+            // })
+            // break
 
-        case constants.CHANGE_LIST_TYPE:
-            state = state.setIn(['listType'], fromJS(action.value))
-            break
+        // case constants.CHANGE_PAGINATION:
+        //     return state.setIn(['pagination'], fromJS(action.value))
 
 
         // case constants.CHANGE_SEARCH_PARAMS:
