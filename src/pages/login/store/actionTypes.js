@@ -1,7 +1,6 @@
 export const CHANGE_SEARCH_STR = "search/change_search_str"
 export const CHANGE_FOCUS = "search/change_focus"
 
-export const CHANGE_LIST_TYPE = "search/change_list_type"
 
 
 export const CHANGE_SEARCH_PARAMS = "usr/chang_search_params"

@@ -4,7 +4,6 @@ import * as constants from "./actionTypes";
 const defaultState = fromJS({
     searchStr: "",
     isFocus: true,
-    listType: 0,
     product: [],
     history: ["ytfdisf", "dhfuhids", "dfhkdf", "dsfh"],
     recommends: ["21324", "34rer", "245fsd", "freg", "rtret"],
@@ -62,10 +61,6 @@ export default (state = defaultState, action) => {
         case constants.CHANGE_SEARCH_STR:
             console.log("2321", action.value)
             return state.setIn(['searchStr'], fromJS(action.value))
-
-        case constants.CHANGE_LIST_TYPE:
-            state = state.setIn(['listType'], fromJS(action.value))
-            break
 
 
         case constants.CHANGE_SEARCH_PARAMS:

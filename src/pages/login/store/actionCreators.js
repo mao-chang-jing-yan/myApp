@@ -30,12 +30,6 @@ export const changeSearchStr = (str) => {
     }
 }
 
-export const changeListType = (type) => {
-    return {
-        type: constants.CHANGE_LIST_TYPE,
-        value: type
-    }
-}
 
 export const changeFocus = (focus) => {
     if (focus === true || focus === false) {

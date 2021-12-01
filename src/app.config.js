@@ -5,19 +5,20 @@ export default {
         'pages/search/search',
         'pages/detail/detail',
         'pages/user/user',
+        'pages/login/login',
     ],
     tabBar: {
         color :"black",
         position: "bottom",
         list: [
             {
-                text: "主页",
+                text: "首页",
                 pagePath: "pages/home/home",
                 iconPath: "tmp/imgs/tabbar/home.png",
                 selectedIconPath: "tmp/imgs/tabbar/home_s.png",
             },
             {
-                text: "index",
+                text: "发布",
                 pagePath: "pages/index/index",
                 iconPath: "tmp/imgs/tabbar/second.png",
                 selectedIconPath: "tmp/imgs/tabbar/second_s.png",

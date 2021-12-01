@@ -1,35 +1,47 @@
-import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
+import {Component} from 'react'
+import {Current} from '@tarojs/taro'
+
+import {View, Text, Image} from '@tarojs/components'
 import './detail.scss'
-import {actionCreators} from "../search/store";
+import {actionCreators} from "./store";
 import {connect} from "react-redux";
+import Taro from "@tarojs/taro";
+import {getCurrentInstance} from "@tarojs/runtime";
+import {http} from "../../service/httpServier";
 
 class Detail extends Component {
+    product_id = 0
+
+    componentDidMount() {
+        // this.product_id = getCurrentInstance().router.params.id
+        // this.props.getProductInfo(this.product_id);
+    }
 
 
-
-    render () {
+    render() {
         return (
             <View className='index'>
-                <Text>Hello world!</Text>
+                <Image src={this.props.productInfo.imgUrl} onClick={()=>{this.props.getProductInfo("we")}}/>
+                <Image src={"http://47.100.82.173:8002/api/v1/images?filename=0"} />
             </View>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    const search = state.get("search")
+    const detail = state.get("detail")
     return {
-        searchStr: search.get("searchStr"),
-        products: search.get("products").toJS(),
+        // searchStr: search.get("searchStr"),
+        productInfo: detail.get("productInfo").toJS(),
         // currentPageUrl:state.currentPageUrl
     }
 }
 const mapDispatchToProp = (dispatch) => {
     return {
-        changeSearchStr(e) {
-            dispatch(actionCreators.changeSearchStr(e.detail.value))
-        },
+
+        getProductInfo(id) {
+            dispatch(actionCreators.getProductData(id))
+        }
 
     }
 }

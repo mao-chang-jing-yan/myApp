@@ -3,6 +3,8 @@ import {View, Text, Image, ScrollView} from '@tarojs/components'
 import './user.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
+import {http} from "../../service/httpServier";
+import Taro from "@tarojs/taro";
 // require("../../tmp/imgs/img/icon/publish.png")
 // require("../../tmp/imgs/img/icon/sale.png")
 // require("../../tmp/imgs/img/icon/cart.png")
@@ -19,6 +21,17 @@ class User extends Component {
         {imgUrl: require("../../tmp/imgs/img/icon/contact.png"), name: "联系客服"},
     ]
 
+    componentDidMount() {
+        // Taro.getUserInfo({
+        //
+        // }).then(r =>{
+        //     console.log(r)
+        // }).catch(err=>{
+        //     console.log(err)
+        // })
+
+    }
+
 
     render() {
         return (
@@ -28,8 +41,8 @@ class User extends Component {
                     <View className={"topBar"}>
                         <View className="title">{this.props.title}</View>
                         <View className="top">
-                            <Image className="ava" onClick={this.props.changeOpenId} src={this.props.avaUrl}/>
-                            <View className="name">{this.props.name}</View>
+                            <Image className="ava" onClick={() => this.props.changeAvaUrl()} src={this.props.avatarUrl}/>
+                            <View className="name">{this.props.nickName}</View>
                         </View>
                         <View className={"list"}>
                             <View className={"item"}>
@@ -53,9 +66,9 @@ class User extends Component {
                     </View>
 
                     {
-                        this.settings.map((item, index)=>{
+                        this.settings.map((item, index) => {
                             return (
-                                <View className={"she_zhi_item"} id={item.name + index}>
+                                <View className={"she_zhi_item"} key={item.name + index}>
                                     <Image className={"img"} src={item.imgUrl}/>
                                     <View className={"text"}>{item.name}</View>
                                     <View className={"right"}>
@@ -84,12 +97,14 @@ class User extends Component {
 
 const mapStateToProps = (state) => {
     const userData = state.get("user")
+    const userInfo = userData.get("user_info")
 
     return {
-        openid: userData.get("openid"),
-        avaUrl: userData.get("avaUrl"),
-        name: userData.get("name"),
+        openid: userInfo.get("open_id"),
+        avatarUrl: userInfo.get("avatar_url"),
+        nickName: userInfo.get("nick_name"),
         title: userData.get("title"),
+        isLogin: userData.get("is_login"),
     }
 }
 const mapDispatchToProp = (dispatch) => {
@@ -102,8 +117,16 @@ const mapDispatchToProp = (dispatch) => {
             //
             // dispatch(action)
         },
-        changeOpenId(e) {
-            dispatch(actionCreators.changeOpenId("123"))
+        changeUserInfo() {
+            dispatch(actionCreators.getUserInfo())
+        },
+        login() {
+            dispatch(actionCreators.handleLogin())
+        },
+        changeAvaUrl(e) {
+            // http.UploadImage()
+            console.log("changeAvaUrl")
+            dispatch(actionCreators.uploadAvaUrl())
         }
     }
 }

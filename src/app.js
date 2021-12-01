@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+// import "@tarojs/async-await"
 import './app.scss'
 import store from './store'
+import "taro-ui/dist/style/index.scss"; // 引入组件样式，仅需引入一次即可
 
 class App extends Component {
 

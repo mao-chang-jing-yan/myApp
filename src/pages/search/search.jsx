@@ -1,70 +1,98 @@
 import {Component, Fragment} from 'react'
-import {View, Text, Input, Image, ScrollView} from '@tarojs/components'
 import './search.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
 import Taro from "@tarojs/taro";
-import productItem from "../../components/productItem/productItem";
+import {Image, Input, ScrollView, View} from "@tarojs/components";
+import productList from "../../components/productList/productList";
+import {AtTabs, AtTabsPane} from "taro-ui";
+import "taro-ui/dist/style/components/tabs.scss";
 
 
 class Search extends Component {
-    imgurl = "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            current: 0,
+        }
+    }
+
+    handleClick(value) {
+        this.setState({
+            current: value
+        })
+    }
+
+    componentDidMount() {
+        // const isf = document.getElementById("input-1").focus()
+        // console.log(isf)
+    }
 
     render() {
         return (
             <Fragment>
+                <View className={"body1"}>
 
-                <View className={"search"}>
-                    <Input
-                        className={"input"}
-                        type={"text"}
-                        value={this.props.searchStr}
-                        onInput={(e) => this.props.changeSearchStr(e)}
-                        placeholder={"请输入"}
-                    />
-                    <Image className={"icon"} src={"https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"}/>
-                </View>
+                    <View className={"search"}>
+                        <Input
+                            id={"input-1"}
+                            className={"input"}
+                            type={"text"}
+                            value={this.props.searchStr}
+                            onInput={(e) => this.props.changeSearchStr(e)}
+                            focus={this.props.isFocus}
+                            onFocus={() => {
+                                this.props.changeFocus(true)
+                                console.log(this.props.isFocus)
+                            }}
+                            onBlur={() => {
+                                setTimeout( () => {
+                                    this.props.changeFocus(false)
+                                }, 10)
+                                console.log(this.props.isFocus)
+                            }}
+                            placeholder={"请输入"}
+                        />
+                        <Image className={"icon"}
+                               src={"https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"}/>
+                    </View>
 
-                <ScrollView scrollY={"true"}>
-                    {/*{*/}
-                    {/*    this.props.products.map((item, index) => {*/}
-                    {/*        return (*/}
-                    {/*            <Fragment>*/}
-                    {/*                <view className={"item-box"} id={index} onClick={this.props.sw}>*/}
-                    {/*                    <Image className={"image"} src={item.imgUrl}/>*/}
-                    {/*                    <View className={"name"}>{item.name}</View>*/}
-                    {/*                    <View className={"bottom"}>*/}
-                    {/*                        <View>*/}
-                    {/*                            <View className={"price"}>¥ {item.price}</View>*/}
-                    {/*                            <View className={"oldprice"}>¥ {item.oldPrice}</View>*/}
-                    {/*                        </View>*/}
-                    {/*                        <View>*/}
-                    {/*                            <View className={"user"}>*/}
-                    {/*                                <Image className={"icon"} src={item.userIcon}/>*/}
-                    {/*                                <View>{item.userName}</View>*/}
-                    {/*                            </View>*/}
-                    {/*                            <View className={"like"}>*/}
-                    {/*                                <Image className={"icon"} src={this.imgurl}/>*/}
-                    {/*                            </View>*/}
-                    {/*                        </View>*/}
-
-                    {/*                    </View>*/}
-                    {/*                </view>*/}
-                    {/*            </Fragment>*/}
-                    {/*        )*/}
-                    {/*    })*/}
-                    {/*}*/}
+                    {/* 历史记录*/}
 
                     {
-                        productItem(this.props, this.props.products)
+                        this.props.isFocus !== true ? "" :
+                            <View className={"search-history-box"}>
+                                {
+                                    this.props.history.map((item, index) => {
+                                        return (
+                                            <View
+                                                className={"search-history-item"}
+                                                key={item + index}
+                                                onClick={() => {
+                                                    this.props.changeSearchStr(item)
+                                                    this.props.changeFocus(false)
+                                                }
+                                                }>
+                                                {item}
+                                            </View>
+                                        )
+                                    })
+                                }
+
+                            </View>
                     }
-                    <View
-                        hidden={this.props.products.length !== 0 ? 'true' : 'false'}
-                        className={this.props.products.length === 0 ? "bottom_" : "None"}
-                    >
-                        --------暂无更多数据---------
-                    </View>
-                </ScrollView>
+                    {
+                        this.props.isFocus === true ? "" :
+                            <View>
+                                {
+                                    productList(this.props, this.props.products)
+                                }
+                            </View>
+                    }
+
+
+                </View>
 
 
             </Fragment>
@@ -78,19 +106,39 @@ const mapStateToProps = (state) => {
     return {
         searchStr: search.get("searchStr"),
         products: search.get("products").toJS(),
+        history: search.get("history").toJS(),
+        recommends: search.get("recommends").toJS(),
+        isFocus: search.get("isFocus"),
+        listType: search.get("listType"),
         // currentPageUrl:state.currentPageUrl
     }
 }
 const mapDispatchToProp = (dispatch) => {
     return {
         changeSearchStr(e) {
-            dispatch(actionCreators.changeSearchStr(e.detail.value))
+            let value = e;
+            // console.log("value1", value)
+            if (e.detail !== undefined) {
+                value = e.detail.value
+            }
+            // console.log("value", value)
+            dispatch(actionCreators.changeSearchStr(value))
         },
-        sw(){
+        sw() {
             Taro.navigateTo({
                 url: "/pages/detail/detail"
             }).then()
-        }
+        },
+        changeFocus(focus) {
+            dispatch(actionCreators.changeFocus(focus))
+        },
+        changeListType(listType){
+            if (listType ===0){
+                dispatch(actionCreators.changeListType(1))
+            }else {
+                dispatch(actionCreators.changeListType(0))
+            }
+        },
 
     }
 }

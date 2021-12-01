@@ -1,99 +1,74 @@
-// import axios,{AxiosRequestConfig} from "axios";
-//
-// export const we = ()=>{
-//     return (dispatch)=>{
-//
-//         axios.defaults.headers.common.Authorization = "my-awesome-token";
-//         axios.defaults.baseURL = "http://127.0.0.1:8002/api";
-//         axios.get("/v1/web/user/query",{
-//             method: "GET",
-//             // url: `http://127.0.0.1:8002/api/v1`,
-//             // data: null,
-//             headers: {
-//                 'Content-Type': 'application/x-www-form-urlencoded'
-//             }
-//         } ).then(res => {
-//             console.log(res)
-//         }).catch(err => {
-//             console.log(err)
-//         })
-//     }
-// }
-
-
 import {constants} from "./index";
-export const changeOpenId = (openid) => {
-    console.log(openid)
+import {api, http} from "../../../service/httpServier";
+import Taro from "@tarojs/taro";
+
+export const changeAvaUrl = (avaUrl) => {
     return {
-        type: constants.CHANGE_OPENID,
-        value: openid
+        type: constants.CHANGE_AVA_URL,
+        value: avaUrl
     }
 }
 
-export const changeInputValue = (e) => {
-
+export const uploadAvaUrl = () => {
     return {
-        type: constants.CHANGE_INPUT_VALUE,
-        value: e
+        type: constants.UPLOAD_AVA_URL,
+        value: ""
     }
 }
 
-export const changeSearchParams = (key, value) => {
-    let params = {
-        key: key,
-        value: value
-    }
-
+export const changeToken = (token) => {
     return {
-        type: constants.CHANGE_SEARCH_PARAMS,
-        value: params
-    }
-}
-export const changePagination = (index, size, total) => {
-    const p = {
-        current: index,
-        pageSize: size,
-        total: total
-    }
-    return {
-        type: constants.CHANGE_PAGINATION,
-        value: p
+        type: constants.CHANGE_TOKEN,
+        value: token
     }
 }
 
-export const changeList = (data) => {
-    // console.log(data)
-
+export const changeNickName = (userName) => {
     return {
-        type: constants.CHANGE_LIST_DATA,
+        type: constants.CHANGE_NICK_NAME,
+        value: userName
+    }
+}
+
+export const changeUserInfo = (data) => {
+    return {
+        type: constants.CHANGE_USER_INFO,
         value: data
     }
 }
 
-
-
-
-export const changeVisible = (bool) => {
+export const changeOpenID = (open_id) => {
     return {
-        type: constants.CHANGE_VISIBLE,
-        value: bool
+        type: constants.CHANGE_OPEN_ID,
+        value: open_id
     }
 }
 
-export const changeUserInfo = (value) => {
+export const changeIsLogin = (isLogin) => {
     return {
-        type: constants.CHANGE_USER_INFO,
-        value: value
+        type: constants.CHANGE_IS_LOGIN,
+        value: isLogin
     }
 }
 
 
-
-
-export const changeDeviceInfo = (data)=>{
-    return{
-        type:constants.CHANGE_DEVICE_INFO,
-        value:data
+export const getUserInfo = () => {
+    return {
+        type: constants.GET_USER_INFO,
+        value: ""
     }
 }
+
+
+// 请求服务端获取openid函数
+export const handleLogin = () => {
+    return {
+        type: constants.USER_LOGIN,
+        value: ""
+    }
+};
+
+
+
+
 
