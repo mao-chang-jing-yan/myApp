@@ -1,4 +1,4 @@
-import {Component, Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import {View, Text, Swiper, SwiperItem, Image, Input, PageMeta, NavigationBar, ScrollView} from '@tarojs/components'
 import './home.scss'
 import {connect} from "react-redux";
@@ -18,10 +18,10 @@ class Home extends Component {
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
     ]
     tuijianListd = [
-        {name: "闲置数码", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
-        {name: "书籍教材", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
-        {name: "鞋服配饰", imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
-        {name: "全部", imgUrl: require("../../tmp/imgs/img/all.png")},
+        {name: "闲置数码", img_url: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "书籍教材", img_url: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "鞋服配饰", img_url: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"},
+        {name: "全部", img_url: require("../../tmp/imgs/img/all.png")},
     ]
 
     render() {
@@ -125,7 +125,7 @@ const tuijianList = (props, List) => {
                                 className='at-col at-col-2 tuijianList-item'
                             >
                                 <View className={"image-box"}>
-                                    <Image className={"image"} src={item.imgUrl}/>
+                                    <Image className={"image"} src={item.img_url}/>
                                 </View>
                                 <View className={"text"}>
                                     {item.name}
@@ -144,7 +144,7 @@ const mapStateToProps = (state) => {
     return {
         // searchStr: home.get("searchStr"),
         products: home.get("products").toJS(),
-        listType: home.get("listType"),
+        listType: home.get("list_type"),
         // currentPageUrl:state.currentPageUrl7
     }
 }

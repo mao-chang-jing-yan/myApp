@@ -6,15 +6,34 @@ import {api, http} from "../../../service/httpServier";
 function* getListData(action) {
     try {
         const data = yield http.GET(api.login, {}, {});
-        console.log(data)
-        // yield put(actionCreators.changeListData(data));
+        yield put(actionCreators.changeList(data));
     } catch (e) {
-        console.log(123)
+
+    }
+}
+
+function* getRecommendsList(action) {
+    try {
+        const data = yield http.GET(api.login, {}, {});
+        yield put(actionCreators.changeRecommendsList(data));
+    } catch (e) {
+
+    }
+}
+
+function* getHistoryList(action) {
+    try {
+        const data = yield http.GET(api.login, {}, {});
+        yield put(actionCreators.changeHistoryList(data));
+    } catch (e) {
+
     }
 }
 
 function* mySaga() {
-    // yield takeEvery(constants.GET_LIST_DATA, getListData);
+    yield takeEvery(constants.GET_LIST_DATA, getListData);
+    yield takeEvery(constants.GET_RECOMMENDS_LIST, getRecommendsList);
+    yield takeEvery(constants.GET_HISTORY_LIST, getHistoryList);
 }
 
 export default mySaga;

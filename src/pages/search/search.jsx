@@ -11,24 +11,6 @@ import "taro-ui/dist/style/components/tabs.scss";
 
 class Search extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            current: 0,
-        }
-    }
-
-    handleClick(value) {
-        this.setState({
-            current: value
-        })
-    }
-
-    componentDidMount() {
-        // const isf = document.getElementById("input-1").focus()
-        // console.log(isf)
-    }
-
     render() {
         return (
             <Fragment>
@@ -39,18 +21,18 @@ class Search extends Component {
                             id={"input-1"}
                             className={"input"}
                             type={"text"}
-                            value={this.props.searchStr}
+                            value={this.props.search_str}
                             onInput={(e) => this.props.changeSearchStr(e)}
-                            focus={this.props.isFocus}
+                            focus={this.props.is_focus}
                             onFocus={() => {
                                 this.props.changeFocus(true)
-                                console.log(this.props.isFocus)
+                                console.log(this.props.is_focus)
                             }}
                             onBlur={() => {
-                                setTimeout( () => {
+                                setTimeout(() => {
                                     this.props.changeFocus(false)
                                 }, 10)
-                                console.log(this.props.isFocus)
+                                console.log(this.props.is_focus)
                             }}
                             placeholder={"请输入"}
                         />
@@ -61,7 +43,7 @@ class Search extends Component {
                     {/* 历史记录*/}
 
                     {
-                        this.props.isFocus !== true ? "" :
+                        this.props.is_focus !== true ? "" :
                             <View className={"search-history-box"}>
                                 {
                                     this.props.history.map((item, index) => {
@@ -83,7 +65,7 @@ class Search extends Component {
                             </View>
                     }
                     {
-                        this.props.isFocus === true ? "" :
+                        this.props.is_focus === true ? "" :
                             <View>
                                 {
                                     productList(this.props, this.props.products)
@@ -104,12 +86,12 @@ class Search extends Component {
 const mapStateToProps = (state) => {
     const search = state.get("search")
     return {
-        searchStr: search.get("searchStr"),
+        search_str: search.get("search_str"),
         products: search.get("products").toJS(),
         history: search.get("history").toJS(),
         recommends: search.get("recommends").toJS(),
-        isFocus: search.get("isFocus"),
-        listType: search.get("listType"),
+        is_focus: search.get("is_focus"),
+        list_type: search.get("list_type"),
         // currentPageUrl:state.currentPageUrl
     }
 }
@@ -132,10 +114,10 @@ const mapDispatchToProp = (dispatch) => {
         changeFocus(focus) {
             dispatch(actionCreators.changeFocus(focus))
         },
-        changeListType(listType){
-            if (listType ===0){
+        changeListType(listType) {
+            if (listType === 0) {
                 dispatch(actionCreators.changeListType(1))
-            }else {
+            } else {
                 dispatch(actionCreators.changeListType(0))
             }
         },

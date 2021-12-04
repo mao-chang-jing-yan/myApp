@@ -2,73 +2,19 @@ import {fromJS} from "immutable";
 import * as constants from "./actionTypes";
 
 const defaultState = fromJS({
-    searchStr: "",
-    listType: 0,
+    search_str: "",
+    list_type: 0,
     products: [
         {
             id: 0,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
+            img_url: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             name: "电脑💻",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
+            user_icon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
             detail: "ufhgusdighfughfdiughdfiu",
-            userName: "2312",
+            user_name: "2312",
             price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
-        }, {
-            id: 1,
-            imgUrl: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            name: "2312",
-            userIcon: "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
-            userName: "2312",
-            price: 123,
-            oldPrice: 90,
-            isLike: 1,
+            old_price: 90,
+            is_like: 1,
         },
     ],
 
@@ -98,7 +44,7 @@ export default (state = defaultState, action) => {
         // break
 
         case constants.CHANGE_LIST_TYPE:
-            state = state.setIn(['listType'], fromJS(action.value))
+            state = state.setIn(['list_type'], fromJS(action.value))
             break
 
         case constants.CHANGE_LIST_DATA:

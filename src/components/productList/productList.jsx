@@ -18,7 +18,7 @@ const productList = (props, products) => {
                                 key={item.name + item.id + index}
                             >
                                 <View className='at-col at-col-3 image-box'>
-                                    <Image className={"image"} src={item.imgUrl}/>
+                                    <Image className={"image"} src={item.img_url}/>
                                 </View>
                                 <View className='at-col at-col-9 detail'>
                                     <View className={"title"}>
@@ -57,17 +57,17 @@ export const productList2 = (props, products) => {
                     return (
                         <View className={"item-box"} style={{marginLeft: index % 2 === 1 ? "2%" : "0",}} key={index}
                               onClick={()=>props.sw(item.id)}>
-                            <Image className={"image"} src={item.imgUrl}/>
+                            <Image className={"image"} src={item.img_url}/>
                             <View className={"name"}>{item.name}</View>
                             <View className={"bottom"}>
                                 <View>
                                     <View className={"price"}>¥ {item.price}</View>
-                                    <View className={"oldprice"}>¥ {item.oldPrice}</View>
+                                    <View className={"oldprice"}>¥ {item.old_price}</View>
                                 </View>
                                 <View>
                                     <View className={"user"}>
-                                        <Image className={"icon"} src={item.userIcon}/>
-                                        <View className={"name"}>{item.userName}</View>
+                                        <Image className={"icon"} src={item.user_icon}/>
+                                        <View className={"name"}>{item.user_name}</View>
                                     </View>
                                     <View className={"like"}>
                                         <Image className={"icon"} src={imgurl}/>

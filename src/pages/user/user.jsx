@@ -1,4 +1,4 @@
-import {Component, Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import {View, Text, Image, ScrollView} from '@tarojs/components'
 import './user.scss'
 import {connect} from "react-redux";

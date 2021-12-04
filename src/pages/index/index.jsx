@@ -5,12 +5,9 @@ import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput} from 'taro-ui'
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/icon.scss";
-import {GET, Patch, POST} from "../../service/httpServier/http";
-import {api, http} from "../../service/httpServier";
 import {actionCreators} from "./store";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
-import {changeProduct} from "./store/actionCreators";
 
 class Index extends Component {
     constructor () {
