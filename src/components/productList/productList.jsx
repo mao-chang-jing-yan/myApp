@@ -1,4 +1,4 @@
-import {Fragment} from "react";
+import React, {Fragment} from "react";
 import {Image, View} from "@tarojs/components";
 import "./productList.scss"
 
@@ -12,7 +12,9 @@ const productList = (props, products) => {
                     products.map((item, index) => {
                         return (
                             <View
-                                className='at-row at-row__align--center product-item'
+                                className='
+                                at-row
+                                product-item'
                                 style={{textAlign: "center"}}
                                 onClick={() => props.sw(item.id)}
                                 key={item.name + item.id + index}

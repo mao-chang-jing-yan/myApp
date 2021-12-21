@@ -6,6 +6,7 @@ export default {
         'pages/detail/detail',
         'pages/user/user',
         'pages/login/login',
+        'pages/pay/pay',
     ],
     tabBar: {
         color :"black",

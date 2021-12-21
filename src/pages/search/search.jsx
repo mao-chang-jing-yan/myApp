@@ -1,4 +1,4 @@
-import {Component, Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import './search.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "./store";

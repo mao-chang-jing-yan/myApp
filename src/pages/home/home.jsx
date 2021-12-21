@@ -7,7 +7,7 @@ import Taro from "@tarojs/taro";
 import "taro-ui/dist/style/components/flex.scss";
 import "taro-ui/dist/style/components/nav-bar.scss";
 import "taro-ui/dist/style/components/icon.scss";
-import {AtNavBar} from "taro-ui";
+import {AtNavBar, AtSearchBar} from "taro-ui";
 import productList, {productList2} from "../../components/productList/productList";
 import {changeListType} from "./store/actionCreators";
 
@@ -40,8 +40,16 @@ class Home extends Component {
                                 value={""}
                                 onClick={() => this.props.goTo1()}
                                 onInput={() => this.props.goTo1()}
-                                placeholder={"搜索关键词"}
+                                placeholder={"🔍搜索关键词"}
                             />
+                            {/*<AtSearchBar*/}
+                            {/*    className={"input"}*/}
+                            {/*    actionName='搜一下'*/}
+                            {/*    value={""}*/}
+                            {/*    onChange={() => this.props.goTo1()}*/}
+                            {/*    onActionClick={() => this.props.goTo1()}*/}
+                            {/*    onFocus={() => this.props.goTo1()}*/}
+                            {/*/>*/}
                         </View>
 
                         <Swiper

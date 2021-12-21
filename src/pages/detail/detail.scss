@@ -1,0 +1,224 @@
+.detail-body {
+
+    background-color: #e9e9e9;
+    height: 1230px;
+    overflow: hidden;
+
+
+    .top {
+        background-color: white;
+
+        .swiper {
+            width: 100%;
+            height: 550px;
+            //overflow: hidden;
+            //border: 1px solid salmon;
+            .swiper-item {
+                width: 100%;
+                height: 100%;
+                //border: 1px solid mediumaquamarine;
+                //padding-bottom: -50px;
+                //overflow: hidden;
+
+                .image {
+                    width: 100%;
+                    height: 100%;
+                    //border: 3px solid black;
+                    //padding-bottom: -100px;
+                }
+            }
+        }
+
+
+        .describe {
+            margin: 0 20px;
+            padding: 20px 0;
+
+            .title {
+                //width: 64px;
+                //height: 24px;
+                color: rgba(17, 17, 17, 1);
+                font-size: 40px;
+                font-weight: bolder;
+
+            }
+
+            .price-box {
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+
+                .price {
+                    color: #f51414;
+                    margin-left: 20px;
+                    font-weight: bolder;
+                    font-size: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .old-price {
+                    margin-left: 10px;
+                    color: #9f9f9f;
+                    text-decoration: line-through;
+                    font-size: 30px;
+                    //border: 1px solid red;
+                    height: 40px;
+                    line-height: 50px;
+                }
+            }
+        }
+
+    }
+
+
+    .detail {
+        background-color: white;
+        //margin: 0 30px;
+        margin-top: 20px;
+        padding: 10px 30px;
+
+        .item{
+            height: 60px;
+            line-height: 60px;
+            .left {
+                color: #9f9f9f;
+                font-size: 30px;
+            }
+
+            .right {
+                margin-left: 20px;
+                font-size: 30px;
+                color: #393939;
+            }
+        }
+
+
+        .submit-at {
+            display: flex;
+            flex-direction: row;
+
+        }
+
+        .new-level {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .detail_ {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+
+    .comment-list {
+        //margin: 0 30px;
+        padding: 10px 30px;
+        margin-top: 20px;
+        background-color: white;
+
+        .item-divider {
+            width: 120%;
+            height: 1px;
+            margin-left: -100px;
+        }
+
+        .item-divider_ {
+            width: 120%;
+            height: 1px;
+            margin-left: -100px;
+        }
+
+
+        .comment-list-title {
+            padding: 10px 0;
+        }
+
+        .comment-list-list {
+
+            .user {
+                display: flex;
+                flex-direction: row;
+
+                .icon {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 30px;
+                }
+
+                .name {
+                    margin-left: 20px;
+                    font-size: 30px;
+                    font-weight: bolder;
+                }
+
+            }
+
+            .text {
+                margin-left: 80px;
+                font-size: 35px;
+            }
+
+            .comment-item {
+                margin: 20px 0;
+            }
+        }
+
+
+    }
+
+
+}
+
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    //margin-bottom: 0;
+    float: bottom;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    background-color: white;
+
+
+    .liu-yan {
+        height: 100%;
+        line-height: 100px;
+        float: left;
+
+
+    }
+
+    .shou-cang {
+        height: 100%;
+        line-height: 100px;
+        float: left;
+
+
+    }
+
+    .mai {
+        height: 100%;
+        width: 30%;
+        line-height: 100px;
+        float: right;
+        background-color: #1cea83;
+        color: white;
+        font-size: 35px;
+
+    }
+
+    .mai_ {
+        height: 100%;
+        width: 30%;
+        line-height: 100px;
+        background-color: #f56243;
+        font-size: 35px;
+
+        float: right;
+        color: white;
+
+    }
+}

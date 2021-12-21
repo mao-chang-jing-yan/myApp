@@ -1,7 +1,7 @@
 .product{
     margin-top: 10px;
     .product-item{
-        height: 200px;
+        height: 150px;
         width: 100%;
         overflow: hidden;
         margin-top: 10px;
@@ -19,19 +19,45 @@
         }
         .detail{
             margin: 0 15px;
+
             .title{
-                font-size: 50px;
-                text-align: left;
-                margin-left: 20px;
+                //font-size: 50px;
+                //text-align: left;
+                //margin-left: 20px;
+                margin-top: 20px;
                 //border: 1px solid red;
+                //left: 152px;
+                //top: 168px;
+                width: 64px;
+                height: 24px;
+                color: rgba(17, 17, 17, 1);
+                font-size: 20px;
             }
             .detail-detail{
-                font-size: 30px;
-                color: gray;
-                text-align: left;
+                //font-size: 30px;
+                //color: gray;
+                //text-align: left;
+                //margin-left: 20px;
+                margin-top: 20px;
+                //left: 152px;
+                //top: 193px;
+                width: 92px;
+                height: 18px;
+                color: rgba(102, 102, 102, 1);
+                font-size: 18px;
+
             }
             .detail-it{
-                font-size: 40px;
+                //font-size: 40px;
+                //left: 152px;
+                //margin-left: 10px;
+                margin-top: 40px;
+                //bottom: 0;
+                width: 44px;
+                height: 21px;
+                color: rgba(17, 17, 17, 1);
+                font-size: 20px;
+
             }
         }
     }
@@ -59,6 +85,13 @@
         }
         .name{
             margin: auto 3%;
+            //left: 62px;
+            //top: 560px;
+            //width: 96px;
+            //height: 24px;
+            color: rgba(17, 17, 17, 1);
+            //font-size: 30px;
+
         }
         .bottom{
             margin: auto 3%;
