@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {View, Text} from '@tarojs/components'
+import {View, Text, Image} from '@tarojs/components'
 import './index.scss'
-import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput} from 'taro-ui'
+import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea} from 'taro-ui'
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/icon.scss";
@@ -10,21 +10,24 @@ import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 
 class Index extends Component {
-    constructor () {
+    constructor() {
         super(...arguments)
         this.state = {
             files: []
         }
     }
-    onChange (files) {
+
+    onChange(files) {
         this.setState({
             files
         })
     }
-    onFail (mes) {
+
+    onFail(mes) {
         console.log(mes)
     }
-    onImageClick (index, file) {
+
+    onImageClick(index, file) {
         console.log(index, file)
     }
 
@@ -71,42 +74,59 @@ class Index extends Component {
                 >
                     <AtInput
                         name='value'
-                        title='文本'
+                        title='名称'
                         type='text'
-                        placeholder='单行文本'
-                        value={product.detail}
-                        // onChange={()=>{}}
-                        onChange={(value, event) =>
-                            this.props.changeProductInfo("detail", event, product)}
-                    />
-
-                    <AtInput
-                        name='value'
-                        title='文本'
-                        type='text'
-                        placeholder='单行文本'
+                        placeholder='商品名称'
                         value={product.name}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeProductInfo("name", event, product)}
+                            this.props.changeInput("name", event, product)}
                     />
+
+
                     <AtInput
                         name='value'
-                        title='文本'
+                        title='价格'
                         type='number'
-                        placeholder='单行文本'
+                        placeholder='商品价格'
                         value={product.price}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeProductInfo("price", event, product)}
+                            this.props.changeInput("price", event, product)}
                     />
 
+                    {/*<AtInput*/}
+                    {/*    name='value'*/}
+                    {/*    title='描述'*/}
+                    {/*    type='text'*/}
+                    {/*    placeholder='商品描述'*/}
+                    {/*    disabled={true}*/}
+                    {/*    value={product.name}*/}
+                    {/*    // onChange={()=>{}}*/}
+                    {/*    onChange={(value, event) =>*/}
+                    {/*        this.props.changeInput("name", event, product)}*/}
+                    {/*/>*/}
+                    <AtTextarea
+                        value={product.detail}
+                        maxLength={200}
+                        placeholder='详细描述'
+                        onChange={(value, event) =>
+                            this.props.changeInput("detail", event, product)}
+                    />
 
+                    <AtImagePicker
+                        customStyle={{"border": "1px solid #d6e4ef", "border-radius": "3px"}}
+                        files={product.images}
+                        onChange={(value, event, index) => {
+                            // console.log(value, event, index)
+                            this.props.changeImages(event, value, product)
+                        }}
+                    />
 
 
                     <AtButton formType='submit' onClick={() => this.props.submitProduct()}>提交</AtButton>
                     <AtButton formType='reset' onClick={() => {
-                        this.props.resetProduct()
+                        this.props.resetProduct(product)
                     }}>重置</AtButton>
                 </AtForm>
 
@@ -144,11 +164,38 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProp = (dispatch) => {
     return {
-        resetProduct() {
-            console.log(Taro.getEnv()=== Taro.ENV_TYPE.WEAPP)
-            dispatch(actionCreators.changeProduct({}))
+        resetProduct(newProduct) {
+            // console.log(Taro.getEnv() === Taro.ENV_TYPE.WEAPP)
+            newProduct.images = []
+            newProduct.price = null
+            newProduct.old_price = null
+            newProduct.name = ""
+            newProduct.detail = ""
+            dispatch(actionCreators.changeProduct(newProduct))
         },
-        changeProductInfo(k, e, newProduct) {
+        changeImages(k, e, newProduct) {
+            if (k === "remove") {
+                newProduct.images = e
+                console.log(e, newProduct)
+                dispatch(actionCreators.changeProduct(newProduct))
+                return;
+            }
+            if (k === "add") {
+                const le = e.length - 1
+                if (e.length <= 0 || e[le].file === undefined) {
+                    return;
+                }
+                newProduct.images.push(
+                    {"url": e[le].url}
+                )
+                console.log(k, e, newProduct.images)
+                // newProduct.images.append(e[0].url)
+                dispatch(actionCreators.changeProduct(newProduct))
+            }
+        },
+        changeInput(k, e, newProduct) {
+            // console.log(k, e)
+
             newProduct[k] = e.detail.value
             // console.log(newProduct)
             // console.log(k, e, e.detail.value)
