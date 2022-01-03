@@ -49,8 +49,21 @@ export async function Delete(url, data, params_) {
 // }
 
 export const UploadFile = async (fileRes) => {
+    // try {
+    let tempFiles = fileRes.tempFiles
+
+    // return await POST(api.uploadImg, {
+    //     filePath: tempFiles[0].path,
+    //     name: 'file',
+    //     formData: {
+    //         // 'user': 'test',
+    //         "size": tempFiles[0].size,
+    //         "type": tempFiles[0].type,
+    //         "file_name": tempFiles[0].path,
+    //     },
+    // },{})
+
     try {
-        let tempFiles = fileRes.tempFiles
         return await Taro.uploadFile({
             url: api.base + api.uploadImg,
             filePath: tempFiles[0].path,
@@ -61,8 +74,9 @@ export const UploadFile = async (fileRes) => {
                 "type": tempFiles[0].type,
                 "file_name": tempFiles[0].path,
             },
+
         })
-    }catch (e) {
+    } catch (e) {
 
     }
     return {}

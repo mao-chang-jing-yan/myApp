@@ -1,5 +1,16 @@
 import React, {Component, Fragment} from 'react'
-import {View, Text, Swiper, SwiperItem, Image, Input, PageMeta, NavigationBar, ScrollView} from '@tarojs/components'
+import {
+    View,
+    Text,
+    Swiper,
+    SwiperItem,
+    Image,
+    Input,
+    PageMeta,
+    NavigationBar,
+    ScrollView,
+    Video
+} from '@tarojs/components'
 import './home.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
@@ -10,6 +21,7 @@ import "taro-ui/dist/style/components/icon.scss";
 import {AtNavBar, AtSearchBar} from "taro-ui";
 import productList, {productList2} from "../../components/productList/productList";
 import {changeListType} from "./store/actionCreators";
+import {api} from "../../service/httpServier";
 
 class Home extends Component {
     swiperImages = [

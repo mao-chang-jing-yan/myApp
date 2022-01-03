@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, Image} from '@tarojs/components'
+import {View, Text, Image, Video} from '@tarojs/components'
 import './index.scss'
 import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea} from 'taro-ui'
 import "taro-ui/dist/style/components/form.scss";
@@ -8,6 +8,7 @@ import "taro-ui/dist/style/components/icon.scss";
 import {actionCreators} from "./store";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
+import {api} from "../../service/httpServier";
 
 class Index extends Component {
     constructor() {
@@ -129,6 +130,8 @@ class Index extends Component {
                         this.props.resetProduct(product)
                     }}>重置</AtButton>
                 </AtForm>
+
+                {/*<Video  src={api.base+"/images/get"}/>*/}
 
                 {/*<AtImagePicker*/}
                 {/*    files={this.state.files}*/}

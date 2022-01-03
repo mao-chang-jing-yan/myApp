@@ -8,7 +8,8 @@ function* userLogin(action) {
     try {
         const res = yield Taro.login()
         const data = yield http.POST(api.login, {"code": res.code}, {});
-        yield put(actionCreators.changeUserInfo(data));
+        yield put(actionCreators.changeOpenID(data.open_id));
+        yield put(actionCreators.changeToken(data.token));
         console.log(res, data)
     } catch (e) {
 
@@ -17,9 +18,9 @@ function* userLogin(action) {
 
 function* uploadAvaUrl(action) {
     try {
-        let fr = yield Taro.chooseImage({})
+        let fr = yield Taro.chooseVideo({})
         let res = yield http.UploadFile(fr)
-        yield put(actionCreators.changeAvaUrl(res.avatar_url))
+        // yield put(actionCreators.changeAvaUrl(res.avatar_url))
         console.log(res)
     } catch (e) {
 

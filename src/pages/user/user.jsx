@@ -3,13 +3,6 @@ import {View, Text, Image, ScrollView} from '@tarojs/components'
 import './user.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "./store";
-import {http} from "../../service/httpServier";
-import Taro from "@tarojs/taro";
-// require("../../tmp/imgs/img/icon/publish.png")
-// require("../../tmp/imgs/img/icon/sale.png")
-// require("../../tmp/imgs/img/icon/cart.png")
-// require("../../tmp/imgs/img/icon/feedback.png")
-// require("../../tmp/imgs/img/icon/contact.png")
 
 
 class User extends Component {
@@ -20,17 +13,6 @@ class User extends Component {
         {imgUrl: require("../../tmp/imgs/img/icon/feedback.png"), name: "意见反馈"},
         {imgUrl: require("../../tmp/imgs/img/icon/contact.png"), name: "联系客服"},
     ]
-
-    componentDidMount() {
-        // Taro.getUserInfo({
-        //
-        // }).then(r =>{
-        //     console.log(r)
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
-
-    }
 
 
     render() {
