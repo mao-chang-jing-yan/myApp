@@ -1,6 +1,6 @@
 import {Component, Fragment} from "react";
 import {Button} from "@tarojs/components";
-import {actionCreators} from "../user/store";
+import {actionCreators} from "../../store/userStore";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 

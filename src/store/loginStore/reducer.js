@@ -2,7 +2,11 @@ import {fromJS} from "immutable";
 import * as constants from "./actionTypes";
 
 const defaultState = fromJS({
-
+    login_type: "0",// 登陆方式
+    user_name: "",
+    password: "",
+    phone: "",
+    code: "",
 
 })
 

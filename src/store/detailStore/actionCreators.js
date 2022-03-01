@@ -1,5 +1,5 @@
 import {constants} from "./index";
-import {api, http} from "../../../service/httpServier";
+import {api, http} from "../../service/httpServier";
 
 // export const changeSearchStr = (str) => {
 //     return {

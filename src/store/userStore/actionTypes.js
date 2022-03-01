@@ -1,3 +1,5 @@
+export const SET_DEFAULT_DATA = "user/set_default_data"
+
 export const CHANGE_NICK_NAME = "user/change_nick_name"
 export const CHANGE_AVA_URL = "user/change_avatar_url"
 export const CHANGE_IS_LOGIN = "user/change_is_login"

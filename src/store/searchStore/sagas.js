@@ -1,11 +1,11 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 import {actionCreators, constants} from "./index";
-import {api, http} from "../../../service/httpServier";
+import {api, http} from "../../service/httpServier";
 
 
 function* getListData(action) {
     try {
-        const data = yield http.GET(api.login, {}, {});
+        const data = yield http.GET(api.Login, {}, {});
         yield put(actionCreators.changeList(data));
     } catch (e) {
 
@@ -14,7 +14,7 @@ function* getListData(action) {
 
 function* getRecommendsList(action) {
     try {
-        const data = yield http.GET(api.login, {}, {});
+        const data = yield http.GET(api.Login, {}, {});
         yield put(actionCreators.changeRecommendsList(data));
     } catch (e) {
 
@@ -23,7 +23,7 @@ function* getRecommendsList(action) {
 
 function* getHistoryList(action) {
     try {
-        const data = yield http.GET(api.login, {}, {});
+        const data = yield http.GET(api.Login, {}, {});
         yield put(actionCreators.changeHistoryList(data));
     } catch (e) {
 

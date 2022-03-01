@@ -17,6 +17,9 @@ export default (state = defaultState, action) => {
     // const newState = JSON.parse(JSON.stringify(state))
 
     switch (action.type) {
+        case constants.SET_DEFAULT_DATA:
+            state = defaultState;
+            break
         case constants.CHANGE_IS_LOGIN:
             state = state.setIn(['isLogin'], fromJS(action.value))
             break

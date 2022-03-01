@@ -1,6 +1,13 @@
 import {constants} from "./index";
-import {api, http} from "../../../service/httpServier";
+import {api, http} from "../../service/httpServier";
 import Taro from "@tarojs/taro";
+
+export const setDefaultData = () => {
+    return {
+        type: constants.SET_DEFAULT_DATA,
+        value: ""
+    }
+}
 
 export const changeAvaUrl = (avaUrl) => {
     return {

@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import './search.scss'
 import {connect} from "react-redux";
-import {actionCreators} from "./store";
+import {actionCreators} from "../../store/searchStore";
 import Taro from "@tarojs/taro";
 import {Image, Input, ScrollView, View} from "@tarojs/components";
 import productList from "../../components/productList/productList";

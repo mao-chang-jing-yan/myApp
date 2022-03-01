@@ -1,5 +1,5 @@
-import {constants} from "./index";
-import {GET} from "../../../service/httpServier/http";
+import {constants} from "./";
+import {GET} from "../../service/httpServier/http";
 
 export const changeProduct = (data) => {
     return {

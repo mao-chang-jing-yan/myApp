@@ -1,10 +1,10 @@
 import {call, put, takeEvery, takeLatest, all, fork} from 'redux-saga/effects'
-import {mySaga as homeSagas} from "../pages/home/store";
-import {mySaga as detailSagas} from "../pages/detail/store";
-import {mySaga as indexSagas} from "../pages/index/store";
-import {mySaga as loginSagas} from "../pages/login/store";
-import {mySaga as searchSagas} from "../pages/search/store";
-import {mySaga as userSagas} from "../pages/user/store";
+import {mySaga as homeSagas} from "./homeStore";
+import {mySaga as detailSagas} from "./detailStore";
+import {mySaga as indexSagas} from "./indexStore";
+import {mySaga as loginSagas} from "./loginStore";
+import {mySaga as searchSagas} from "./searchStore";
+import {mySaga as userSagas} from "./userStore";
 // import Api from '...'
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions

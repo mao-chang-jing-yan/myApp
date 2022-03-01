@@ -5,33 +5,12 @@ import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea} from 'ta
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/icon.scss";
-import {actionCreators} from "./store";
+import {actionCreators} from "../../store/indexStore/index";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 import {api} from "../../service/httpServier";
 
 class Index extends Component {
-    constructor() {
-        super(...arguments)
-        this.state = {
-            files: []
-        }
-    }
-
-    onChange(files) {
-        this.setState({
-            files
-        })
-    }
-
-    onFail(mes) {
-        console.log(mes)
-    }
-
-    onImageClick(index, file) {
-        console.log(index, file)
-    }
-
     render() {
         let product = this.props.product;
 

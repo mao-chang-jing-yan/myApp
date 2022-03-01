@@ -1,11 +1,11 @@
 import {call, put, takeEvery, takeLatest} from 'redux-saga/effects'
 import {actionCreators, constants} from "./index";
-import {api, http} from "../../../service/httpServier";
+import {api, http} from "../../service/httpServier";
 
 
 function* getListData(action) {
     try {
-        const data = yield http.GET(api.login, {}, {});
+        const data = yield http.GET(api.Login, {}, {});
         console.log(data)
         // yield put(actionCreators.changeListData(data));
     } catch (e) {

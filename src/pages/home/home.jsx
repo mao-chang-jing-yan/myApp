@@ -13,14 +13,14 @@ import {
 } from '@tarojs/components'
 import './home.scss'
 import {connect} from "react-redux";
-import {actionCreators} from "./store";
+import {actionCreators} from "../../store/homeStore";
 import Taro from "@tarojs/taro";
 import "taro-ui/dist/style/components/flex.scss";
 import "taro-ui/dist/style/components/nav-bar.scss";
 import "taro-ui/dist/style/components/icon.scss";
 import {AtNavBar, AtSearchBar} from "taro-ui";
 import productList, {productList2} from "../../components/productList/productList";
-import {changeListType} from "./store/actionCreators";
+import {changeListType, getListData} from "../../store/homeStore/actionCreators";
 import {api} from "../../service/httpServier";
 
 class Home extends Component {
@@ -192,12 +192,17 @@ const mapDispatchToProp = (dispatch) => {
             }).then()
         },
         changeListType(listType){
+            dispatch(actionCreators.getListData())
+
             if (listType ===0){
                 dispatch(actionCreators.changeListType(1))
             }else {
                 dispatch(actionCreators.changeListType(0))
             }
-        }
+        },
+        // getListData(){
+        //   dispatch(actionCreators.getListData())
+        // },
     }
 }
 

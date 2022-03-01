@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {View, Text, Image, ScrollView} from '@tarojs/components'
 import './user.scss'
 import {connect} from "react-redux";
-import {actionCreators} from "./store";
+import {actionCreators} from "../../store/userStore";
 
 
 class User extends Component {
@@ -109,6 +109,7 @@ const mapDispatchToProp = (dispatch) => {
             // http.UploadImage()
             console.log("changeAvaUrl")
             dispatch(actionCreators.uploadAvaUrl())
+            // dispatch(actionCreators.setDefaultData())
         }
     }
 }

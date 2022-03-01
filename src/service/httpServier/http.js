@@ -19,7 +19,7 @@ export async function Patch(url, data, params_) {
 
 export async function Delete(url, data, params_) {
     let params = {url, data, params_};
-    return await baseOptions(params, "PATCH");
+    return await baseOptions(params, "DELETE");
 }
 
 
@@ -65,7 +65,7 @@ export const UploadFile = async (fileRes) => {
 
     try {
         return await Taro.uploadFile({
-            url: api.base + api.uploadImg,
+            url: api.base + api.ImageUpload,
             filePath: tempFiles[0].path,
             name: 'file',
             formData: {
@@ -110,7 +110,7 @@ export const checkLogin = async () => {
         return
     }
 
-    let data = await POST(api.login, {"code": loginCode, "re": "57"}, {})
+    let data = await POST(api.Login, {"code": loginCode}, {})
     console.log(loginCode, data)
     return data
 
