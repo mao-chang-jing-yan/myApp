@@ -14,6 +14,7 @@ import {
 import './home.scss'
 import {connect} from "react-redux";
 import {actionCreators} from "../../store/homeStore";
+import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import Taro from "@tarojs/taro";
 import "taro-ui/dist/style/components/flex.scss";
 import "taro-ui/dist/style/components/nav-bar.scss";
@@ -106,8 +107,9 @@ class Home extends Component {
                                 color: "#f37f66",
                             }}
                             >最新</View>发布｜最新二手信息
-                            <View style={{float: "right"}} onClick={()=>{
-                                this.props.changeListType(this.props.listType)}}>
+                            <View style={{float: "right"}} onClick={() => {
+                                this.props.changeListType(this.props.listType)
+                            }}>
                                 修改列表格式
                             </View>
                         </View>
@@ -143,6 +145,7 @@ const tuijianList = (props, List) => {
                             <View
                                 key={item.name + index}
                                 className='at-col at-col-2 tuijianList-item'
+                                onClick={()=>props.switchToSearch()}
                             >
                                 <View className={"image-box"}>
                                     <Image className={"image"} src={item.img_url}/>
@@ -189,16 +192,26 @@ const mapDispatchToProp = (dispatch) => {
         goTo1() {
             Taro.navigateTo({
                 url: "/pages/search/search"
-            }).then()
+            }).then(r=>{
+                dispatch(searchActionCreators.changeFocus(true))
+            })
         },
-        changeListType(listType){
+        changeListType(listType) {
             dispatch(actionCreators.getListData())
 
-            if (listType ===0){
+            if (listType === 0) {
                 dispatch(actionCreators.changeListType(1))
-            }else {
+            } else {
                 dispatch(actionCreators.changeListType(0))
             }
+        },
+        switchToSearch() {
+            dispatch(searchActionCreators.changeFocus(false))
+            Taro.navigateTo({
+                url: "/pages/search/search"
+            }).then(r=>{
+                dispatch(searchActionCreators.changeFocus(false))
+            })
         },
         // getListData(){
         //   dispatch(actionCreators.getListData())

@@ -8,24 +8,24 @@ import {GET} from "../../service/httpServier/http";
 //     }
 // }
 
-export const changeListType = (type) => {
+export const changeListType = (type = 0) => {
     return {
         type: constants.CHANGE_LIST_TYPE,
         value: type
     }
 }
 
-export const changeListData = (data) => {
+export const changeListData = (data = []) => {
     return {
         type: constants.CHANGE_LIST_DATA,
         value: data
     }
 }
 
-export const getListData = () => {
+export const getListData = (filter = {}) => {
     return {
         type: constants.GET_LIST_DATA,
-        value: ""
+        value: filter
     }
 }
 

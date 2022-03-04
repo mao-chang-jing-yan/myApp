@@ -5,7 +5,7 @@ import {api, http} from "../../service/httpServier";
 
 function* getListData(action) {
     try {
-        const data = yield http.GET(api.Login, {}, {});
+        const data = yield http.GET(api.QueryProduct, {}, {});
         console.log(data)
         yield put(actionCreators.changeListData(data.products));
     } catch (e) {}

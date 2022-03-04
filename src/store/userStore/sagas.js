@@ -21,12 +21,16 @@ function* userLogin(action) {
             yield put(actionCreators.changeOpenID("oYNbg4jrfAN1LY9nW9PHx2gQZV8I"));
             yield put(actionCreators.changeToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiIiwiUGhvbmUiOiIxMjQ1NDc0NTM3NSIsIk5pY2tOYW1lIjoibWFvIiwiQXV0aG9yaXR5SWQiOiLogIHluIgiLCJVc2VySWQiOiI2MjFjZGFjZDVhYTBjZWM3MzUwMjFkN2YiLCJleHAiOjE2NDYxNDQ2MDgsImlzcyI6Im1hb19jaGFuZyIsIm5iZiI6MTY0NjA0ODIwOH0.jMnla8AAS3f2pVGG4kvUa5l4Bd9l-W58mF7xSfDLSeQ"));
             // return
+            yield Taro.navigateTo({
+                url: "/pages/home/home"
+            })
+            return
         }
-        // const data = yield http.POST(api.login, {"code": code}, {});
-        // yield put(actionCreators.changeOpenID(data.open_id));
-        // yield put(actionCreators.changeToken(data.token));
+        const data = yield http.POST(api.Login, {"code": code}, {});
+        yield put(actionCreators.changeOpenID(data.open_id));
+        yield put(actionCreators.changeToken(data.token));
     } catch (e) {
-
+        // console.log(e)
     }
     yield Taro.navigateTo({
         url: "/pages/home/home"
@@ -37,7 +41,10 @@ function* uploadAvaUrl(action) {
     try {
         let fr = yield Taro.chooseImage({})
         let res = yield http.UploadFile(fr)
-        yield put(actionCreators.changeAvaUrl(res.avatar_url))
+        let file_url = yield http.fileId_to_url(res?.file_id)
+        console.log(action, res, file_url)
+        yield put(actionCreators.changeAvaUrl(file_url))
+        yield http.Patch(api.UpdateUser, {ava_url:file_url})
     } catch (e) {
 
     }

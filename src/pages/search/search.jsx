@@ -37,6 +37,7 @@ class Search extends Component {
                             placeholder={"请输入"}
                         />
                         <Image className={"icon"}
+                               onClick={this.props.search({search_str: this.props.search_str})}
                                src={"https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"}/>
                     </View>
 
@@ -87,9 +88,9 @@ const mapStateToProps = (state) => {
     const search = state.get("search")
     return {
         search_str: search.get("search_str"),
-        products: search.get("products").toJS(),
-        history: search.get("history").toJS(),
-        recommends: search.get("recommends").toJS(),
+        products: search.get("products")?.toJS() || [],
+        history: search.get("history")?.toJS() || [],
+        recommends: search.get("recommends")?.toJS() || [],
         is_focus: search.get("is_focus"),
         list_type: search.get("list_type"),
         // currentPageUrl:state.currentPageUrl
@@ -105,6 +106,9 @@ const mapDispatchToProp = (dispatch) => {
             }
             // console.log("value", value)
             dispatch(actionCreators.changeSearchStr(value))
+        },
+        search(filter) {
+            dispatch(actionCreators.getList(filter))
         },
         sw() {
             Taro.navigateTo({

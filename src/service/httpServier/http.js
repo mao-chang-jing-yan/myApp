@@ -48,6 +48,10 @@ export async function Delete(url, data, params_) {
 //
 // }
 
+export const fileId_to_url = (file_id)=>{
+    return api.base+api.ImageGet+"?filename="+file_id
+}
+
 export const UploadFile = async (fileRes) => {
     // try {
     let tempFiles = fileRes.tempFiles
@@ -75,7 +79,12 @@ export const UploadFile = async (fileRes) => {
                 "file_name": tempFiles[0].path,
             },
 
-        })
+        }).then(res=>{
+            if (res?.data){
+                return JSON.parse(res?.data)
+            }
+            return res?.data
+        }).catch(err=>{return {}})
     } catch (e) {
 
     }

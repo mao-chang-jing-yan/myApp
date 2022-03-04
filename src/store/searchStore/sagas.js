@@ -5,7 +5,11 @@ import {api, http} from "../../service/httpServier";
 
 function* getListData(action) {
     try {
-        const data = yield http.GET(api.Login, {}, {});
+        console.log(action)
+        const data = yield http.GET(api.QueryProduct, action.value, {});
+        if (!data) {
+            return
+        }
         yield put(actionCreators.changeList(data));
     } catch (e) {
 

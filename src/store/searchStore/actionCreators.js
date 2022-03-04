@@ -43,23 +43,23 @@ export const changeRecommendsList = (data) => {
 }
 
 // get
-export const getList = () => {
+export const getList = (filter = {}) => {
     return {
         type: constants.GET_LIST_DATA,
-        value: ""
+        value: filter
     }
 }
 
-export const getRecommendsList = () => {
+export const getRecommendsList = (filter = {}) => {
     return {
         type: constants.GET_RECOMMENDS_LIST,
-        value: ""
+        value: filter
     }
 }
 
-export const getHistoryList = () => {
+export const getHistoryList = (filter = {}) => {
     return {
         type: constants.GET_HISTORY_LIST,
-        value: ""
+        value: filter
     }
 }

@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import {api} from "./index";
 
-const BASE_URL = api.base;
+const BASE_URL = api.base + api.wechat;
 const TOKEN = ""
 
 
@@ -11,7 +11,7 @@ const request = async (options) => {
         if (res === null || res.statusCode !== 200) {
             return null
         }
-        if (res.errMsg === "token err"){
+        if (res.errMsg === "token err") {
             return Taro.navigateTo("/pages/login")
         }
         // console.log("res.data = ", res.data);
@@ -30,9 +30,13 @@ export async function baseOptions(params, method = "GET") {
     }
     // let contentType = "application/json;charset=UTF-8";
     // contentType = params.contentType || contentType;
-    let token = await Taro.getStorage({
-        key: "token",
-    }) || "";
+    let token = "";
+    try {
+        token = await Taro.getStorage({
+            key: "token",
+        }) || "";
+    }catch (e) {}
+
     const options = {
         // url: BASE_URL + url,  //地址
         url: BASE_URL + url,  //地址
