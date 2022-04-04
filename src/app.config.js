@@ -1,11 +1,14 @@
 export default {
     pages: [
+        'pages/detail/detail',
+
+        'pages/detail2/detail2',
+        'pages/home2/home2',
         'pages/login/login',
         'pages/user/user',
         'pages/index/index',
         'pages/home/home',
         'pages/search/search',
-        'pages/detail/detail',
         'pages/pay/pay',
     ],
     tabBar: {
