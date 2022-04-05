@@ -81,19 +81,30 @@ class Detail2 extends Component {
                     <View className="bottom_left">
                         <View className="t_card">
                             {/*<Text className="cuIcon-message cuIcon"> </Text>*/}
-                            <Text>留言</Text>
+                            <Image
+                                className="image"
+                                style={{width: "20px", height: "20px"}}
+                                src={require("../../tmp/imgs/follow2.png")}
+                            />
+                            <Text className="text">留言</Text>
                         </View>
                         <View  className="t_card" >
                             {/*<Text className="cuIcon-like cuIcon fav_active"> </Text>*/}
-                            <Text>收藏</Text>
+                            <Image
+                                className="image"
+                                style={{width: "20px", height: "20px"}}
+                                src={require("../../tmp/imgs/follow2.png")}
+                            />
+                            <Text className="text">收藏</Text>
                         </View>
                         <View  className="t_card">
                             {/*<Text className="cuIcon-warn cuIcon"> </Text>*/}
                             <Image
+                                className="image"
                                 style={{width: "20px", height: "20px"}}
                                 src={require("../../tmp/imgs/follow2.png")}
                             />
-                            <Text>举报</Text>
+                            <Text className="text">举报</Text>
                         </View>
                     </View>
                     <View className="add-cart sub f16">

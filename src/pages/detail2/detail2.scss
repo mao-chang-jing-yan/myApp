@@ -206,13 +206,13 @@ button:after {
     margin-left: 30px;
 }
 
-.t_card Image {
+.t_card .image {
     width: 60px;
     height: 80px;
     padding-top: 10px;
 }
 
-.t_card text {
+.t_card .text {
     display: flex;
     align-items: flex-start;
     justify-content: center;

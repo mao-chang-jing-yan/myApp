@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import {View, Text, Image, Video} from '@tarojs/components'
+import {View, Text, Image, Video, Picker} from '@tarojs/components'
 import './index.scss'
-import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea} from 'taro-ui'
+import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea, AtList, AtListItem} from 'taro-ui'
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/icon.scss";
@@ -54,7 +54,7 @@ class Index extends Component {
                 >
                     <AtInput
                         name='value'
-                        title='名称'
+                        title='商品名称'
                         type='text'
                         placeholder='商品名称'
                         value={product.name}
@@ -62,11 +62,21 @@ class Index extends Component {
                         onChange={(value, event) =>
                             this.props.changeInput("name", event, product)}
                     />
+                    <AtInput
+                        name='value'
+                        title='原价'
+                        type='number'
+                        placeholder='商品价格'
+                        value={product.old_price}
+                        // onChange={()=>{}}
+                        onChange={(value, event) =>
+                            this.props.changeInput("old_price", event, product)}
+                    />
 
 
                     <AtInput
                         name='value'
-                        title='价格'
+                        title='现价'
                         type='number'
                         placeholder='商品价格'
                         value={product.price}
@@ -74,6 +84,24 @@ class Index extends Component {
                         onChange={(value, event) =>
                             this.props.changeInput("price", event, product)}
                     />
+                    <AtInput
+                        name='value'
+                        title='电话'
+                        type='text'
+                        placeholder='商品价格'
+                        value={product.price}
+                        // onChange={()=>{}}
+                        onChange={(value, event) =>
+                            this.props.changeInput("price", event, product)}
+                    />
+                    <Picker mode='selector' range={[]}>
+                        <AtList>
+                            <AtListItem
+                                title='国家地区'
+                                // extraText={this.state.selectorChecked}
+                            />
+                        </AtList>
+                    </Picker>
 
                     {/*<AtInput*/}
                     {/*    name='value'*/}
