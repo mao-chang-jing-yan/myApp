@@ -16,22 +16,28 @@ import './detail2.scss'
 import {connect} from "react-redux";
 import Taro from "_@tarojs_taro@3.3.14@@tarojs/taro";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
-import {actionCreators} from "../../store/homeStore";
+import {actionCreators} from "../../store/detailStore";
 import commentList from "../../components/comment/comment";
+import {getCurrentInstance} from "_@tarojs_runtime@3.3.14@@tarojs/runtime";
 
 
 const imgUrl = "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"
 
 class Detail2 extends Component {
+    componentDidMount() {
+        let product_id = getCurrentInstance().router.params.id
+        this.props.getProductInfo(product_id);
+    }
+
     render() {
         return (
             <Fragment>
                 <Swiper autoplay={true} className="picture" duration={500}
                         indicatorDots={true} interval={500}>
-                    <SwiperItem>
+                    <SwiperItem className="picture-swiper-item">
                         <Image
                             className="slide-Image"
-                            mode="aspectFill"
+                            // mode="aspectFill"
                             src={imgUrl}
                         />
                     </SwiperItem>
@@ -112,6 +118,7 @@ class Detail2 extends Component {
                               >联系卖家
                         </View>
                         <View  className="add-cart-btn"
+                               onClick={()=>this.props.pay()}
                                style={{background:"#FF6444"}}>立即购买
                         </View>
                     </View>
@@ -123,14 +130,25 @@ class Detail2 extends Component {
 
 
 const mapStateToProps = (state) => {
-    return{
-
+    const detail = state.get("detail")
+    return {
+        // searchStr: search.get("searchStr"),
+        product_info: detail.get("product_info").toJS(),
+        comment_list: detail.get("comment_list").toJS(),
+        // currentPageUrl:state.currentPageUrl
     }
-
 }
 const mapDispatchToProp = (dispatch) => {
     return{
-
+        getProductInfo(id) {
+            // console.log(id)
+            dispatch(actionCreators.getProductData(id))
+        },
+        pay(){
+            Taro.navigateTo({
+                url: "/pages/pay/pay"
+            }).then(r =>{})
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProp)(Detail2);

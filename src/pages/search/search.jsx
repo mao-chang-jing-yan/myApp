@@ -85,16 +85,19 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const search = state.get("search")
-    return {
-        search_str: search.get("search_str"),
-        products: search.get("products")?.toJS() || [],
-        history: search.get("history")?.toJS() || [],
-        recommends: search.get("recommends")?.toJS() || [],
-        is_focus: search.get("is_focus"),
-        list_type: search.get("list_type"),
-        // currentPageUrl:state.currentPageUrl
-    }
+    const search = state.get("search");
+    const res_ =
+        {
+            search_str: search.get("search_str"),
+            products: search.get("products")?.toJS() || [],
+            history: search.get("history")?.toJS() || [],
+            recommends: search.get("recommends")?.toJS() || [],
+            is_focus: search.get("is_focus"),
+            list_type: search.get("list_type"),
+            // currentPageUrl:state.currentPageUrl
+        }
+        console.log("res_", res_)
+    return res_
 }
 const mapDispatchToProp = (dispatch) => {
     return {

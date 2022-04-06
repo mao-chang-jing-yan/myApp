@@ -1,5 +1,7 @@
 export default {
     pages: [
+        'pages/user2/user2',
+        'pages/search2/search2',
         'pages/test1/test1',
         'pages/index/index',
         'pages/index2/index2',

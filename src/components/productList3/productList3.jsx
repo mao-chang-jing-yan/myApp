@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import {Image, SwiperItem, Text, View} from "@tarojs/components";
 import "./productList3.scss"
-import productList from "../productList/productList";
 
 const productList3 = (props, products) => {
     const imgurl = "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"

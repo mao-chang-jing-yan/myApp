@@ -7,7 +7,7 @@ function* getListData(action) {
     try {
         console.log(action)
         const data = yield http.GET(api.QueryProduct, action.value, {});
-        if (!data) {
+        if (!data || !Array.isArray(data)) {
             return
         }
         yield put(actionCreators.changeList(data));
