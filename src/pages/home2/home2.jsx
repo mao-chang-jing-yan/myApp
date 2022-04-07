@@ -26,6 +26,12 @@ class Home2 extends Component {
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
     ]
+    settings = [
+        {imageUrl: require("../../tmp/imgs/img/1.png"), text: "闲置数码"},
+        {imageUrl: require("../../tmp/imgs/img/2.png"), text: "文具笔记"},
+        {imageUrl: require("../../tmp/imgs/img/3.png"), text: "鞋服配饰"},
+        {imageUrl: require("../../tmp/imgs/img/all.png"), text: "全部"},
+    ]
 
     render() {
         return (
@@ -69,11 +75,21 @@ class Home2 extends Component {
                     <View className={"flex-col group_1"}>
                         <View className={"flex-col section_3"}>
                             <View className={"flex-row equal-division"}>
-                                <View className={"flex-col items-center equal-division-item"}
-                                      data-id="9999">
-                                    <Image className={"image_1"} src={require("../../tmp/imgs/img/all.png")}/>
-                                    <Text className={"text_1"} decode="decode">全部</Text>
-                                </View>
+                                {
+                                    this.settings.map((item, index) => {
+                                        return (
+                                            <View key={item + index} className={"flex-col items-center equal-division-item"}>
+                                                <Image className={"image_1"}
+                                                       src={item.imageUrl}/>
+                                                <Text className={"text_1"} decode="decode">{item.text}</Text>
+                                            </View>
+                                        )
+                                    })
+                                }
+                                {/*<View className={"flex-col items-center equal-division-item"}>*/}
+                                {/*    <Image className={"image_1"} src={require("../../tmp/imgs/img/all.png")}/>*/}
+                                {/*    <Text className={"text_1"} decode="decode">全部</Text>*/}
+                                {/*</View>*/}
                             </View>
                             {/*<View className={"flex-col group_5"}>*/}
                             {/*    <View className={"flex-row group_6"}>*/}
@@ -109,14 +125,14 @@ class Home2 extends Component {
                                         fontStyle: "italic",
                                         color: "#f37f66",
                                     }}
-                                    >最新</View>发布|最新二手信息
+                                    >最新</View>发布 &nbsp;| 最新二手信息
                                 </View>
                                 {/*<block >*/}
                                 {/*    <Image className="empty" src="../../../images/img/empty.png"/>*/}
                                 {/*    <View className="text-center text-df margin-top">暂无数据~</View>*/}
                                 {/*</block>*/}
                                 {
-                                        productList3(this.props, this.props.products)
+                                    productList3(this.props, this.props.products)
                                 }
                             </View>
                         </View>
@@ -158,7 +174,7 @@ const mapDispatchToProp = (dispatch) => {
         goTo1() {
             Taro.navigateTo({
                 url: "/pages/search/search"
-            }).then(r=>{
+            }).then(r => {
                 dispatch(searchActionCreators.changeFocus(true))
             })
         },
@@ -175,7 +191,7 @@ const mapDispatchToProp = (dispatch) => {
             dispatch(searchActionCreators.changeFocus(false))
             Taro.navigateTo({
                 url: "/pages/search/search"
-            }).then(r=>{
+            }).then(r => {
                 dispatch(searchActionCreators.changeFocus(false))
             })
         },

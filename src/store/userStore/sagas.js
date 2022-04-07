@@ -22,7 +22,7 @@ function* userLogin(action) {
             yield put(actionCreators.changeToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJOYW1lIjoiIiwiUGhvbmUiOiIxMjQ1NDc0NTM3NSIsIk5pY2tOYW1lIjoibWFvIiwiQXV0aG9yaXR5SWQiOiLogIHluIgiLCJVc2VySWQiOiI2MjFjZGFjZDVhYTBjZWM3MzUwMjFkN2YiLCJleHAiOjE2NDYxNDQ2MDgsImlzcyI6Im1hb19jaGFuZyIsIm5iZiI6MTY0NjA0ODIwOH0.jMnla8AAS3f2pVGG4kvUa5l4Bd9l-W58mF7xSfDLSeQ"));
             // return
             yield Taro.navigateTo({
-                url: "/pages/home/home"
+                url: "/pages/home2/home2"
             })
             return
         }
@@ -33,7 +33,7 @@ function* userLogin(action) {
         // console.log(e)
     }
     yield Taro.navigateTo({
-        url: "/pages/home/home"
+        url: "/pages/home2/home2"
     })
 }
 

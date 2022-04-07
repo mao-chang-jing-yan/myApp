@@ -1,5 +1,6 @@
 export default {
     pages: [
+        'pages/login/login',
         'pages/search3/index',
         'pages/user2/user2',
         'pages/search2/search2',
@@ -11,7 +12,6 @@ export default {
 
 
         'pages/home2/home2',
-        'pages/login/login',
         'pages/user/user',
         'pages/home/home',
         'pages/search/search',
