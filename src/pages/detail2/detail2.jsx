@@ -14,11 +14,11 @@ import {
 import './detail2.scss'
 
 import {connect} from "react-redux";
-import Taro from "_@tarojs_taro@3.3.14@@tarojs/taro";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import {actionCreators} from "../../store/detailStore";
 import commentList from "../../components/comment/comment";
-import {getCurrentInstance} from "_@tarojs_runtime@3.3.14@@tarojs/runtime";
+import {getCurrentInstance} from "@tarojs/runtime";
+import Taro from "@tarojs/taro";
 
 
 const imgUrl = "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"

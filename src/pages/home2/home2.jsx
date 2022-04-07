@@ -15,9 +15,9 @@ import './home2.scss'
 
 import {connect} from "react-redux";
 import productList3 from "../../components/productList3/productList3";
-import Taro from "_@tarojs_taro@3.3.14@@tarojs/taro";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import {actionCreators} from "../../store/homeStore";
+import Taro from "@tarojs/taro";
 
 
 class Home2 extends Component {

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {actionCreators} from "../../store/searchStore";
 import Taro from "@tarojs/taro";
 import {Image, Input, ScrollView, Text, View} from "@tarojs/components";
-import productList4 from "../../components/productList3/productList4";
+import ProductList4 from "../../components/productList3/productList4";
 
 
 class Search2 extends Component {
@@ -32,9 +32,13 @@ class Search2 extends Component {
                         {/*</View>*/}
                     </View>
                 </ScrollView>
-                {
-                    productList4(this.props, this.props.products)
-                }
+                {/*{*/}
+                {/*    productList4(this.props, this.props.products)*/}
+                {/*}*/}
+                <ProductList4
+                    sw={this.props.sw}
+                    products={this.props.products}
+                />
                 <View className="nomore" >
                     暂无更多数据~
                 </View>
