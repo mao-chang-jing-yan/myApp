@@ -12,6 +12,8 @@ const defaultState = fromJS({
         user_name: "2312",
         price: 123,
         old_price: 90,
+        old_new_type: "",
+        type: "",
         is_like: 1,
         images: [],
     },

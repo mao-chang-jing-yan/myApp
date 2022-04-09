@@ -1164,6 +1164,10 @@ icon {
     color: #09bb07;
     white-space: nowrap;
 }
+.cu-form-group{
+    flex-direction: row;
+    justify-content: space-between;
+}
 
 .cu-form-group .title {
     min-width: calc(4em + 30px);

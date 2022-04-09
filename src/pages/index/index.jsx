@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {View, Text, Image, Video, Picker} from '@tarojs/components'
 import './index.scss'
-import {AtAvatar, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea, AtList, AtListItem} from 'taro-ui'
+import {AtAvatar,AtMessage, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea, AtList, AtListItem} from 'taro-ui'
 import "taro-ui/dist/style/components/form.scss";
 import "taro-ui/dist/style/components/image-picker.scss";
 import "taro-ui/dist/style/components/icon.scss";
@@ -11,11 +11,17 @@ import {connect} from "react-redux";
 import {api} from "../../service/httpServier";
 
 class Index extends Component {
+    old_new_type = ["全新", "九成新", "五成新"]
+    typeL = ["1", "2", "3"]
+    constStr = ""
+
     render() {
         let product = this.props.product;
+        let focus = false;
 
         return (
             <View className={"index"}>
+                <AtMessage />
                 <View style={{
                     // float: "left",
                     // width: "50px",
@@ -28,6 +34,7 @@ class Index extends Component {
                     display: "flex",
                     flexDirection: "row",
                     justifyContent: "left",
+                    margin: "10px 0 12px 0",
                 }}>
                     <View style={{
                         // float: "left",
@@ -60,7 +67,7 @@ class Index extends Component {
                         value={product.name}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeInput("name", event, product)}
+                            this.props.changeInput("name", event.detail.value, product)}
                     />
                     <AtInput
                         name='value'
@@ -70,7 +77,7 @@ class Index extends Component {
                         value={product.old_price}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeInput("old_price", event, product)}
+                            this.props.changeInput("old_price", event.detail.value, product)}
                     />
 
 
@@ -82,7 +89,7 @@ class Index extends Component {
                         value={product.price}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeInput("price", event, product)}
+                            this.props.changeInput("price", event.detail.value, product)}
                     />
                     <AtInput
                         name='value'
@@ -92,13 +99,43 @@ class Index extends Component {
                         value={product.price}
                         // onChange={()=>{}}
                         onChange={(value, event) =>
-                            this.props.changeInput("price", event, product)}
+                            this.props.changeInput("price", event.detail.value, product)}
                     />
-                    <Picker mode='selector' range={[]}>
+                    {/*
+                    新旧程度、所属分类
+                    */}
+                    <Picker
+                        mode='selector'
+                        range={this.old_new_type}
+                        onChange={
+                            (event) => {
+                                // console.log(value, event)
+                                this.props.changeInput("old_new_type", this.old_new_type[event.detail.value], product)
+                            }
+                        }
+                    >
                         <AtList>
                             <AtListItem
-                                title='国家地区'
-                                // extraText={this.state.selectorChecked}
+                                title='新旧程度'
+                                extraText={product.old_new_type}
+                            />
+                        </AtList>
+                    </Picker>
+
+                    <Picker
+                        mode='selector'
+                        range={this.typeL}
+                        onChange={
+                            (event) => {
+                                // console.log(value, event)
+                                this.props.changeInput("type", this.typeL[event.detail.value], product)
+                            }
+                        }
+                    >
+                        <AtList>
+                            <AtListItem
+                                title='所属类型'
+                                extraText={product.type}
                             />
                         </AtList>
                     </Picker>
@@ -114,13 +151,60 @@ class Index extends Component {
                     {/*    onChange={(value, event) =>*/}
                     {/*        this.props.changeInput("name", event, product)}*/}
                     {/*/>*/}
+                    <Picker
+                        mode='selector'
+                        range={[]}
+                        onChange={
+                            (event) => {}
+                        }
+                        disabled={true}
+                    >
+                        <AtList>
+                            <AtListItem
+                                title='详细描述'
+                                extraText={""}
+                            />
+                        </AtList>
+                    </Picker>
                     <AtTextarea
                         value={product.detail}
                         maxLength={200}
                         placeholder='详细描述'
                         onChange={(value, event) =>
-                            this.props.changeInput("detail", event, product)}
+                            this.props.changeInput("detail", event.detail.value, product)}
                     />
+
+                    {/*<AtInput*/}
+                    {/*    name='value'*/}
+                    {/*    title='上传图片'*/}
+                    {/*    type='text'*/}
+                    {/*    placeholder=''*/}
+                    {/*    value={this.constStr}*/}
+                    {/*    focus={false}*/}
+                    {/*    onChange={() => {*/}
+                    {/*        this.constStr = ""*/}
+                    {/*    }}*/}
+                    {/*    onfocus={() => {*/}
+                    {/*        focus = false*/}
+                    {/*    }}*/}
+                    {/*    style={{width: "200px", height: "30px", overflow: "hidden", border: "1px solid red"}}*/}
+                    {/*/>*/}
+                    <Picker
+                        mode='selector'
+                        range={[]}
+                        onChange={
+                            (event) => {}
+                        }
+                        disabled={true}
+                    >
+                        <AtList>
+                            <AtListItem
+                                title='上传图片'
+                                extraText={""}
+                            />
+                        </AtList>
+                    </Picker>
+
 
                     <AtImagePicker
                         customStyle={{"border": "1px solid #d6e4ef", "border-radius": "3px"}}
@@ -203,15 +287,22 @@ const mapDispatchToProp = (dispatch) => {
                 dispatch(actionCreators.changeProduct(newProduct))
             }
         },
-        changeInput(k, e, newProduct) {
+        changeSelect(key, value, newProduct) {
+
+        },
+        changeInput(key, value, newProduct) {
             // console.log(k, e)
 
-            newProduct[k] = e.detail.value
+            newProduct[key] = value
             // console.log(newProduct)
             // console.log(k, e, e.detail.value)
             dispatch(actionCreators.changeProduct(newProduct))
         },
         submitProduct() {
+            Taro.atMessage({
+                'message': "123",
+                'type': "error",
+            })
             dispatch(actionCreators.submitProduct())
         },
 

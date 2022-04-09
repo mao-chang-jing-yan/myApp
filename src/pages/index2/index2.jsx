@@ -22,6 +22,7 @@ class Index2 extends Component {
                         <View className="cu-form-group">
                             <View className="title">商品名称</View>
                             <Input  name="name" placeholder="请输入商品的名称"
+                                    type={"text"}
                                    value="{{data.name}}"> </Input>
                         </View>
                         {/*<view className="cu-form-group">*/}
