@@ -2,41 +2,16 @@ import React, {Fragment, Component} from 'react'
 import Taro from '@tarojs/taro'
 import {View, Image, Text} from '@tarojs/components'
 import './index.scss'
-// import {styled} from "linaria/react";
+import {AtCalendar} from "taro-ui";
 
 
-let styled = function (Tag) {
-    // new View()
-    return(
-        <Tag>
-        </Tag>
-    )
-}
 
-// const Title = styled(View)`
-//     color: #333;
-//     background: red;
-// `
-
-class Title extends Component{
-    render() {
-        return (
-            <View>
-                123
-            </View>
-        );
-    }
-
-}
 
 
 class Index extends Component {
     render() {
         return (
             <Fragment>
-                <Title>
-                    Hello World!
-                </Title>
                 <View className='cnt13'>
                     <Image
                         src='//img11.360buyimg.com/img/jfs/t1/177486/8/22783/15034/624ecc16E1dee7dbd/566c23c460a4f212.png'
@@ -57,6 +32,7 @@ class Index extends Component {
                         />
                     </View>
                 </View>
+                {/*<AtCalendar isVertical />*/}
 
 
             </Fragment>

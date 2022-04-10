@@ -36,8 +36,8 @@ class Index extends Component {
                             </View>
                         </View>
                     </View>
-                    <Text className='txt3'>Courses</Text>
-                    <Text className='txt4'>Your running subjects</Text>
+                    <Text className='txt3'>课程列表</Text>
+                    <Text className='txt4'>进行中的课程</Text>
                     <CourseCard1 />
 
 
