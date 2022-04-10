@@ -1,6 +1,6 @@
 export default {
     pages: [
-        'pages/classRoomTest/classRoomTest',
+        'pages/courseDetail/courseDetail',
         'pages/login/login',
         'pages/search3/index',
         'pages/user2/user2',
@@ -24,7 +24,13 @@ export default {
         list: [
             {
                 text: "首页",
-                pagePath: "pages/home/home",
+                pagePath: "pages/home2/home2",
+                iconPath: "tmp/imgs/tabbar/home.png",
+                selectedIconPath: "tmp/imgs/tabbar/home_s.png",
+            },
+            {
+                text: "课程",
+                pagePath: "pages/courseDetail/courseDetail",
                 iconPath: "tmp/imgs/tabbar/home.png",
                 selectedIconPath: "tmp/imgs/tabbar/home_s.png",
             },

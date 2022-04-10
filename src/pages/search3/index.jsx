@@ -51,7 +51,8 @@ class Index extends Component {
                     </View>
                     <View className='icon_wrap5'>
                         <Image
-                            src='//img20.360buyimg.com/img/jfs/t1/209634/3/19956/216/624ecc16E81b02a54/07adbf2a912f765b.png'
+                            // src='//img20.360buyimg.com/img/jfs/t1/209634/3/19956/216/624ecc16E81b02a54/07adbf2a912f765b.png'
+                            src='//img11.360buyimg.com/img/jfs/t1/177486/8/22783/15034/624ecc16E1dee7dbd/566c23c460a4f212.png'
                             className='icon2'
                         />
                     </View>

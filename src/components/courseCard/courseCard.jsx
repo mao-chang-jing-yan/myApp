@@ -8,33 +8,42 @@ const CourseCard1 = (props) => {
     let height = props?.style?.height || "auto";
     let width = props?.style?.width || "auto";
 
+    let courseInfo = props?.courseInfo || {};
+    courseInfo.id = courseInfo.id ? courseInfo.id : "";
+    courseInfo.time = courseInfo.time ? courseInfo.time : "09:30";
+    courseInfo.name = courseInfo.name ? courseInfo.name : "Physics";
+    courseInfo.teacher = courseInfo.teacher ? courseInfo.teacher : "Alex Jesus";
+    courseInfo.chapter = courseInfo.chapter ? courseInfo.chapter : "Chapter 3: Force";
+    courseInfo.type = courseInfo.type ? courseInfo.type : "Google Meet";
+    courseInfo.imageUrl = courseInfo.imageUrl ? courseInfo.imageUrl : "//img10.360buyimg.com/img/jfs/t1/102569/34/26118/9287/624c2784E41e9be60/fc8f29cbb04f32b3.png";
+
     return (
         <Fragment>
-            <View className='CourseCard1-item' style={{height: height, width:width}}>
+            <View className='CourseCard1-item' style={{height: height, width: width}}>
                 <View className="CourseCard1-item-container">
                     <View className='text-list'>
-                        <Text className='name'>Physics</Text>
-                        <Text className='chapter'>Chapter 3: Force</Text>
-                        <View className='cnt5'>
+                        <Text className='name'>{courseInfo.name}</Text>
+                        <Text className='chapter'>{courseInfo.chapter}</Text>
+                        <View className='text-list-item'>
                             <Image
                                 src='//img12.360buyimg.com/img/jfs/t1/204451/11/20764/370/624c2784E749adb03/9449dd5819fbe547.png'
-                                className='icon2'
+                                className='icon'
                             />
-                            <Text className='time'>09:30</Text>
+                            <Text className='text'>{courseInfo.time}</Text>
                         </View>
-                        <View className='cnt6'>
+                        <View className='text-list-item'>
                             <Image
                                 src='//img12.360buyimg.com/img/jfs/t1/134369/33/24426/801/624c2784E7a81476a/182a15a0efd3581b.png'
-                                className='icon2'
+                                className='icon'
                             />
-                            <Text className='teacher'>Alex Jesus</Text>
+                            <Text className='text'>{courseInfo.teacher}</Text>
                         </View>
-                        <View className='cnt7'>
+                        <View className='text-list-item'>
                             <Image
                                 src='//img10.360buyimg.com/img/jfs/t1/210799/17/19956/807/624c2784E4a3735fb/d78b36e19a95738a.png'
-                                className='icon3'
+                                className='icon'
                             />
-                            <Text className='type'>Google Meet</Text>
+                            <Text className='text'>{courseInfo.type}</Text>
                         </View>
                     </View>
                     <View className='image-list'>
@@ -43,7 +52,7 @@ const CourseCard1 = (props) => {
                             className='img'
                         />
                         <Image
-                            src='//img10.360buyimg.com/img/jfs/t1/102569/34/26118/9287/624c2784E41e9be60/fc8f29cbb04f32b3.png'
+                            src={courseInfo.imageUrl}
                             className='img1'
                         />
                     </View>

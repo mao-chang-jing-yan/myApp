@@ -9,7 +9,7 @@
     height: 300px;
     font-family: SFProText-Semibold, serif;
     color: rgb(255, 255, 255);
-    margin: 24px 0 0 12px;
+    //margin: 24px 0 0 12px;
     .CourseCard1-item-container{
         width: 100%;
         height: 100%;
@@ -57,6 +57,7 @@
         white-space: nowrap;
         max-width: 170px;
         overflow: hidden;
+        margin-bottom: 18px;
     }
 
 
@@ -71,8 +72,8 @@
 
     .icon2 {
         flex-shrink: 0;
-        width: 14px;
-        height: 14px;
+        width: 24px;
+        height: 24px;
     }
 
     .time {
@@ -104,6 +105,32 @@
         height: 20px;
         margin-left: 6px;
     }
+    .text-list-item{
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 89px;
+        //height: 18px;
+        margin-top: -3px;
+        //border: 1px solid red;
+        .icon{
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            //border: 1px solid red;
+        }
+        .text{
+            opacity: 0.8;
+            //line-height: 1.54;
+            font-family: SFProText-Medium, serif;
+            font-size: 13px;
+            letter-spacing: -0.2px;
+            flex-shrink: 0;
+            //height: 20px;
+            margin-left: 4px;
+            //border: 1px solid red;
+        }
+    }
 
     .cnt7 {
         display: flex;
@@ -116,8 +143,8 @@
 
     .icon3 {
         flex-shrink: 0;
-        width: 18px;
-        height: 18px;
+        width: 28px;
+        height: 28px;
     }
 
     .type {
@@ -145,8 +172,8 @@
     justify-content: center;
 
     .img {
-        width: 4px;
-        height: 12px;
+        width: 8px;
+        height: 24px;
     }
 
     .img1 {
