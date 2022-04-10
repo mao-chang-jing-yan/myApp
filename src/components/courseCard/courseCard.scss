@@ -1,0 +1,159 @@
+.CourseCard1-item {
+    box-shadow: 0 12px 24px -4px rgba(127, 134, 255, 0.3);
+    border-radius: 16px;
+    background-color: rgb(127, 134, 255);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    //width: 327px;
+    height: 300px;
+    font-family: SFProText-Semibold, serif;
+    color: rgb(255, 255, 255);
+    margin: 24px 0 0 12px;
+    .CourseCard1-item-container{
+        width: 100%;
+        height: 100%;
+        margin: 4%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+    }
+}
+
+.text-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    //margin-left: 50px;
+    //border: 1px solid red;
+
+    .name {
+        line-height: 1.29;
+        font-family: SFProText-Bold, serif;
+        font-size: 17px;
+        letter-spacing: -0.4px;
+        flex-shrink: 0;
+        //height: 22px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 170px;
+        overflow: hidden;
+    }
+
+    .chapter {
+        line-height: 1.54;
+        font-size: 13px;
+        letter-spacing: -0.2px;
+        flex-shrink: 0;
+        //height: 20px;
+        margin-top: 4px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 170px;
+        overflow: hidden;
+    }
+
+
+    .cnt5 {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 87px;
+        //height: 14.5px;
+        margin-top: 23.5px;
+    }
+
+    .icon2 {
+        flex-shrink: 0;
+        width: 14px;
+        height: 14px;
+    }
+
+    .time {
+        opacity: 0.8;
+        line-height: 1.54;
+        font-size: 13px;
+        letter-spacing: -0.2px;
+        flex-shrink: 0;
+        height: 20px;
+        margin-left: 6px;
+    }
+
+    .cnt6 {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 87px;
+        //height: 14px;
+        margin-top: 9px;
+    }
+
+    .teacher {
+        opacity: 0.8;
+        line-height: 1.54;
+        font-family: SFProText-Medium, serif;
+        font-size: 13px;
+        letter-spacing: -0.2px;
+        flex-shrink: 0;
+        height: 20px;
+        margin-left: 6px;
+    }
+
+    .cnt7 {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 89px;
+        //height: 18px;
+        margin-top: 8px;
+    }
+
+    .icon3 {
+        flex-shrink: 0;
+        width: 18px;
+        height: 18px;
+    }
+
+    .type {
+        opacity: 0.8;
+        line-height: 1.54;
+        font-family: SFProText-Medium, serif;
+        font-size: 13px;
+        letter-spacing: -0.2px;
+        flex-shrink: 0;
+        height: 20px;
+        margin-left: 4px;
+    }
+}
+
+
+.image-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    //width: 93px;
+    height: 100%;
+    margin-left: 20px;
+    //margin-right: 50px;
+    //border: 1px solid red;
+    justify-content: center;
+
+    .img {
+        width: 4px;
+        height: 12px;
+    }
+
+    .img1 {
+        width: 186px;
+        height: 200px;
+        margin-top: 14px;
+    }
+}
+
+

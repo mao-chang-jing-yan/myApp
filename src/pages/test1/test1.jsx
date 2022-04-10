@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
+import {View, Text, Image} from '@tarojs/components'
 import './test1.scss'
+import CourseCard1 from "../../components/courseCard/courseCard";
 
 class Index extends Component {
     render() {
@@ -37,6 +38,9 @@ class Index extends Component {
                     </View>
                     <Text className='txt3'>Courses</Text>
                     <Text className='txt4'>Your running subjects</Text>
+                    <CourseCard1 />
+
+
                     {/*<View className='cnt3'>*/}
                     {/*    <Text className='txt5'>Mathematics</Text>*/}
                     {/*    <Text className='txt6'>Chemistry</Text>*/}

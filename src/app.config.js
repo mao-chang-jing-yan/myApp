@@ -1,5 +1,6 @@
 export default {
     pages: [
+        'pages/classRoomTest/classRoomTest',
         'pages/login/login',
         'pages/search3/index',
         'pages/user2/user2',
