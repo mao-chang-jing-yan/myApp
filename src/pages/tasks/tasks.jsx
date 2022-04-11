@@ -18,6 +18,7 @@ class Index extends Component {
     }
 
     handleClick(value) {
+        console.log(value)
         this.setState({
             current: value
         })
@@ -26,6 +27,30 @@ class Index extends Component {
     onDateChange = e => {
         this.setState({
             dateSel: e.detail.value
+        })
+    }
+
+    getNextDay(d, num = 1) {
+        let d2 = new Date((1000 * 60 * 60 * 24) * num + d.valueOf());
+        return `${d2.getMonth() + 1}月${d2.getDate()}日`
+
+    }
+
+    getTitles() {
+        let titles = [];
+        let current = 3;
+        let d = new Date();
+        for (let i = 0; i < 7; i++) {
+            titles.push({
+                title: this.getNextDay(d, i-current),
+            })
+        }
+
+        return titles;
+    }
+    componentDidMount() {
+        this.setState({
+            current: 3,
         })
     }
 
@@ -209,36 +234,40 @@ class Index extends Component {
                 <AtTabs
                     current={this.state.current}
                     scroll
-                    tabList={[
-                        {title: <View><View>描述</View><View>描述</View></View>},
-                        {title: <View><View>讨论</View><View>讨论</View></View>},
-                        {title: '1月1日'},
-                        {title: '资源'},
-                        {title: '资源'},
-                        {title: '资源'},
-                        {title: '资源'},
-                        {title: '资源'},
-                    ]}
+                    // tabList={[
+                    //     {title: '1'},
+                    //     {title: '2'},
+                    //     {title: '1月1日'},
+                    //     {title: '资源'},
+                    //     // {title: '资源'},
+                    //     // {title: '资源'},
+                    //     // {title: '资源'},
+                    //     // {title: '资源'},
+                    // ]}
+                    tabList={this.getTitles()}
                     onClick={this.handleClick.bind(this)}
                 >
-                    <AtTabsPane current={this.state.current} index={0}>
-                        <TimeLine courseList={[{}, {}]}/>
-                    </AtTabsPane>
-                    <AtTabsPane current={this.state.current} index={1}>
-                        <TimeLine courseList={[{}, {}, {}]}/>
-                    </AtTabsPane>
-                    <AtTabsPane current={this.state.current} index={2}>
+                    {
+                        this.getTitles().map((item, index)=>{
+                            return(
+                                <AtTabsPane current={this.state.current} index={index} key={item + index}>
+                                    <View style={{marginTop: "20px"}}>
+                                        <TimeLine courseList={[{}, {}]}/>
+                                    </View>
+                                </AtTabsPane>
+                            )
+                        })
+                    }
 
-                    </AtTabsPane>
-                    <View>
-                        <Picker mode='date' onChange={this.onDateChange}>
-                            <AtList>
-                                <AtListItem title='请选择日期' extraText={this.state.dateSel}/>
-                            </AtList>
-                        </Picker>
-                    </View>
+
                 </AtTabs>
-
+                <View>
+                    <Picker mode='date' onChange={this.onDateChange}>
+                        <AtList>
+                            <AtListItem title='请选择日期' extraText={this.state.dateSel}/>
+                        </AtList>
+                    </Picker>
+                </View>
                 {/*<AtCalendar />*/}
 
             </View>

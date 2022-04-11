@@ -16,7 +16,7 @@ import './detail2.scss'
 import {connect} from "react-redux";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import {actionCreators} from "../../store/detailStore";
-import commentList from "../../components/comment/comment";
+import CommentList from "../../components/comment/comment";
 import {getCurrentInstance} from "@tarojs/runtime";
 import Taro from "@tarojs/taro";
 
@@ -77,9 +77,7 @@ class Detail2 extends Component {
 
                 <View className="comment_box">
                     <View className="name">全部留言</View>
-                    {
-                        commentList(this.props, [])
-                    }
+                    <CommentList comments={""}/>
                 </View>
 
 

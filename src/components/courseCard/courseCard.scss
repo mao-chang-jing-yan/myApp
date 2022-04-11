@@ -10,7 +10,7 @@
     font-family: SFProText-Semibold, serif;
     color: rgb(255, 255, 255);
     //margin: 24px 0 0 12px;
-    .CourseCard1-item-container{
+    .CourseCard1-item-container {
         width: 100%;
         height: 100%;
         margin: 4%;
@@ -31,34 +31,34 @@
     //margin-left: 50px;
     //border: 1px solid red;
 
-    .name {
+    .name, .chapter {
         line-height: 1.29;
         font-family: SFProText-Bold, serif;
-        font-size: 17px;
+        //font-size: 17px;
         letter-spacing: -0.4px;
         flex-shrink: 0;
         //height: 22px;
         display: inline-block;
         text-overflow: ellipsis;
         white-space: nowrap;
-        max-width: 170px;
+        //max-width: 170px;
         overflow: hidden;
     }
 
-    .chapter {
-        line-height: 1.54;
-        font-size: 13px;
-        letter-spacing: -0.2px;
-        flex-shrink: 0;
-        //height: 20px;
-        margin-top: 4px;
-        display: inline-block;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        max-width: 170px;
-        overflow: hidden;
-        margin-bottom: 18px;
-    }
+    //.chapter {
+    //    line-height: 1.54;
+    //    font-size: 13px;
+    //    letter-spacing: -0.2px;
+    //    flex-shrink: 0;
+    //    //height: 20px;
+    //    margin-top: 4px;
+    //    display: inline-block;
+    //    text-overflow: ellipsis;
+    //    white-space: nowrap;
+    //    max-width: 170px;
+    //    overflow: hidden;
+    //    margin-bottom: 18px;
+    //}
 
 
     .cnt5 {
@@ -105,7 +105,8 @@
         height: 20px;
         margin-left: 6px;
     }
-    .text-list-item{
+
+    .text-list-item {
         display: flex;
         align-items: center;
         flex-shrink: 0;
@@ -113,17 +114,18 @@
         //height: 18px;
         margin-top: -3px;
         //border: 1px solid red;
-        .icon{
+        .icon {
             flex-shrink: 0;
-            width: 28px;
-            height: 28px;
+            width: 38px;
+            height: 38px;
             //border: 1px solid red;
         }
-        .text{
+
+        .text {
             opacity: 0.8;
             //line-height: 1.54;
             font-family: SFProText-Medium, serif;
-            font-size: 13px;
+            //font-size: 13px;
             letter-spacing: -0.2px;
             flex-shrink: 0;
             //height: 20px;

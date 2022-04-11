@@ -1,10 +1,11 @@
 import React, {Fragment} from "react";
 import {Image, SwiperItem, Text, View} from "@tarojs/components";
 import "./courseCard.scss"
+import Taro from "@tarojs/taro";
 
 
 const CourseCard1 = (props) => {
-    console.log(props)
+    // console.log(props)
     const height = props?.style?.height || "auto";
     const width = props?.style?.width || "auto";
     // const backgroundColor = props?.style?.backgroundColor || "";
@@ -25,7 +26,9 @@ const CourseCard1 = (props) => {
     return (
         <Fragment>
             <View className='CourseCard1-item'
-                  style={{height: height, width: width, backgroundColor: selected?"":"rgb(169,255,253, 0.3)", color: selected?"":"black"}}>
+                  style={{height: height, width: width, backgroundColor: selected?"":"rgb(169,255,253, 0.3)", color: selected?"":"black"}}
+                  onClick={()=>Taro.navigateTo({url:"/pages/courseDetail/courseDetail"}).then()}
+            >
                 <View className="CourseCard1-item-container">
                     <View className='text-list'>
                         <Text className='name'>{courseInfo.name}</Text>

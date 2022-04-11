@@ -13,9 +13,14 @@ const TimeLineItem = (props) => {
         <Fragment>
             <View className={selected?"time-line-item-selected":"time-line-item"} style={{marginTop: "5px"}}>
                 <View className={"time"}>
-                    9:00~10:30
+                    <View>
+                        9:00
+                    </View>
+                    <View style={{opacity: 0.4}}>
+                        10:30
+                    </View>
                 </View>
-                <View style={{display: "flex", flexDirection: "column", alignItems: "center", width: "5%"}}>
+                <View style={{display: "flex", flexDirection: "column", alignItems: "center", width: "3%"}}>
                     <View className='wrapper'>
                         <View className='color_view'> </View>
                     </View>
@@ -23,7 +28,7 @@ const TimeLineItem = (props) => {
                         isLast?"":<View className='split_hor'> </View>
                     }
                 </View>
-                <CourseCard1 courseInfo={courseInfo} style={{width: "70%"}} selected={selected} showTime={false}/>
+                <CourseCard1 courseInfo={courseInfo} style={{width: "75%"}} selected={selected} showTime={false}/>
             </View>
         </Fragment>
     )

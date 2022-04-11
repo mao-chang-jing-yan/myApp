@@ -1,5 +1,6 @@
 export default {
     pages: [
+        'pages/home2/home2',
         'pages/courseDetail/courseDetail',
         'pages/tasks/tasks',
         'pages/login/login',
@@ -13,7 +14,6 @@ export default {
         'pages/detail/detail',
 
 
-        'pages/home2/home2',
         'pages/user/user',
         'pages/home/home',
         'pages/search/search',

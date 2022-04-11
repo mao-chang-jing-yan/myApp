@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import {View, Text, Image, ScrollView, Video, SwiperItem, Swiper} from '@tarojs/components'
 import './courseDetail.scss'
 import {AtCalendar, AtTabs, AtTabsPane} from "taro-ui";
+import CommentList from "../../components/comment/comment";
 
 
 const item_info_list = [
@@ -187,20 +188,19 @@ class Index extends React.Component {
                         onClick={this.handleClick.bind(this)}>
                         <AtTabsPane current={this.state.current} index={0}>
                             <View style={{fontSize:"18px",textAlign:"left",height:"100px"}}>
-                                <Text className='txt9'>About this class</Text>
-                                <Text className='txt10'>
-                                    Force: The push or pull on an object with mass that causes it to
-                                    change its velocity.
-                                </Text>
-                                <Text className='txt11'>
-                                    Force is an external agent capable of changing the state of rest or motion of a particular body.
-                                    It has a magnitude and a direction. The direction towards which the force is applied is known as
-                                    the direction of the force and the application of force is the point where force is applied.
-                                </Text>
+                                <View className='at-article__h2'>
+                                    关于本课程
+                                </View>
+                                <View className='at-article__p'>
+                                    力是一种能够改变特定物体静止或运动状态的外部因素。
+                                    它有大小和方向。施加力的方向称为力的方向和施力是施力的点。
+                                </View>
+
                             </View>
                         </AtTabsPane>
                         <AtTabsPane current={this.state.current} index={1}>
-                            <View style='font-size:18px;text-align:center;height:100px;'>标签页二的内容</View>
+                            <CommentList comments={""}/>
+                            {/*<View style='font-size:18px;text-align:center;height:100px;'>标签页二的内容</View>*/}
                         </AtTabsPane>
                         <AtTabsPane current={this.state.current} index={2}>
                             <View style='font-size:18px;text-align:center;height:100px;'>标签页三的内容</View>

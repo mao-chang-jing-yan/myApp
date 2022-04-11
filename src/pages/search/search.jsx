@@ -5,11 +5,39 @@ import {actionCreators} from "../../store/searchStore";
 import Taro from "@tarojs/taro";
 import {Image, Input, ScrollView, View} from "@tarojs/components";
 import productList from "../../components/productList/productList";
-import {AtTabs, AtTabsPane} from "taro-ui";
+import {AtSearchBar, AtTabs, AtTabsPane, AtTag} from "taro-ui";
 import "taro-ui/dist/style/components/tabs.scss";
-
+import ProductList4 from "../../components/productList3/productList4";
+import TimeLine from "../../components/courseTimeLine/courseTimeLine";
+import "taro-ui/dist/style/components/tag.scss";
 
 class Search extends Component {
+    constructor() {
+        super(...arguments)
+        this.state = {
+            current: 0,
+            dateSel: "",
+        }
+    }
+
+    handleClick(value) {
+        console.log(value)
+        this.setState({
+            current: value
+        })
+    }
+
+    types = ["全部", "服饰", "电子产品", "书籍"]
+
+    getTitles() {
+        let titles = [];
+        for (let i = 0; i < this.types.length; i++) {
+            titles.push({
+                title: this.types[i]
+            })
+        }
+        return titles;
+    }
 
     render() {
         return (
@@ -17,12 +45,12 @@ class Search extends Component {
                 <View className={"body1"}>
 
                     <View className={"search"}>
-                        <Input
-                            id={"input-1"}
-                            className={"input"}
-                            type={"text"}
+                        <AtSearchBar
+                            customStyle={{width: "100%"}}
+                            showActionButton
                             value={this.props.search_str}
-                            onInput={(e) => this.props.changeSearchStr(e)}
+                            onChange={(value, event) => this.props.changeSearchStr(event)}
+                            onActionClick={this.props.search({search_str: this.props.search_str})}
                             focus={this.props.is_focus}
                             onFocus={() => {
                                 this.props.changeFocus(true)
@@ -34,11 +62,30 @@ class Search extends Component {
                                 }, 10)
                                 console.log(this.props.is_focus)
                             }}
-                            placeholder={"请输入"}
                         />
-                        <Image className={"icon"}
-                               onClick={this.props.search({search_str: this.props.search_str})}
-                               src={"https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"}/>
+
+                        {/*<Input*/}
+                        {/*    id={"input-1"}*/}
+                        {/*    className={"input"}*/}
+                        {/*    type={"text"}*/}
+                        {/*    value={this.props.search_str}*/}
+                        {/*    onInput={(e) => this.props.changeSearchStr(e)}*/}
+                        {/*    focus={this.props.is_focus}*/}
+                        {/*    onFocus={() => {*/}
+                        {/*        this.props.changeFocus(true)*/}
+                        {/*        console.log(this.props.is_focus)*/}
+                        {/*    }}*/}
+                        {/*    onBlur={() => {*/}
+                        {/*        setTimeout(() => {*/}
+                        {/*            this.props.changeFocus(false)*/}
+                        {/*        }, 10)*/}
+                        {/*        console.log(this.props.is_focus)*/}
+                        {/*    }}*/}
+                        {/*    placeholder={"请输入"}*/}
+                        {/*/>*/}
+                        {/*<Image className={"icon"}*/}
+                        {/*       onClick={this.props.search({search_str: this.props.search_str})}*/}
+                        {/*       src={"https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"}/>*/}
                     </View>
 
                     {/* 历史记录*/}
@@ -49,16 +96,27 @@ class Search extends Component {
                                 {
                                     this.props.history.map((item, index) => {
                                         return (
-                                            <View
-                                                className={"search-history-item"}
-                                                key={item + index}
-                                                onClick={() => {
-                                                    this.props.changeSearchStr(item)
-                                                    this.props.changeFocus(false)
-                                                }
-                                                }>
-                                                {item}
-                                            </View>
+                                            // <View
+                                            //     className={"search-history-item"}
+                                            //     key={item + index}
+                                            //     onClick={() => {
+                                            //         this.props.changeSearchStr(item)
+                                            //         this.props.changeFocus(false)
+                                            //     }
+                                            //     }>
+                                            //     {item}
+                                            //
+                                            // </View>
+                                            <AtTag key={item + index}
+                                                   onClick={() => {
+                                                       this.props.changeSearchStr(item)
+                                                       this.props.changeFocus(false)
+                                                   }}
+                                                   active={true}
+                                                   circle={true}
+                                                   size={"small"}
+                                                   customStyle={{marginLeft: "10px"}}
+                                            >{item}</AtTag>
                                         )
                                     })
                                 }
@@ -67,11 +125,33 @@ class Search extends Component {
                     }
                     {
                         this.props.is_focus === true ? "" :
-                            <View>
+                            <AtTabs current={this.state.current} tabList={this.getTitles()}
+                                    onClick={this.handleClick.bind(this)}>
                                 {
-                                    productList(this.props, this.props.products)
+                                    this.getTitles().map((item, index) => {
+                                        return (
+                                            <AtTabsPane current={this.state.current} index={index} key={item + index}>
+
+                                                <View>
+                                                    {
+                                                        // productList(this.props, this.props.products)
+                                                    }
+                                                    <ProductList4
+                                                        sw={this.props.sw}
+                                                        products={this.props.products}
+                                                    />
+                                                    <View className="nomore">
+                                                        暂无更多数据~
+                                                    </View>
+                                                </View>
+
+                                            </AtTabsPane>
+                                        )
+                                    })
                                 }
-                            </View>
+
+                            </AtTabs>
+
                     }
 
 
@@ -96,7 +176,7 @@ const mapStateToProps = (state) => {
             list_type: search.get("list_type"),
             // currentPageUrl:state.currentPageUrl
         }
-        console.log("res_", res_)
+    console.log("res_", res_)
     return res_
 }
 const mapDispatchToProp = (dispatch) => {

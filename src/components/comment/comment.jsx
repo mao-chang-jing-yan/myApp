@@ -3,10 +3,10 @@ import {Image, SwiperItem, Text, View} from "@tarojs/components";
 import "./comment.scss"
 
 
-const commentList = (props, comments) => {
+const CommentList = (props) => {
     const imgurl = "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto"
 
-    comments = [
+    const comments = props?.comments || [
         {
             id: "",
             text: "efusfuyiwfe",
@@ -109,4 +109,4 @@ const commentList = (props, comments) => {
     )
 }
 
-export default commentList
+export default CommentList

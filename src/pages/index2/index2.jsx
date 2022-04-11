@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {Image, Input, Swiper, SwiperItem, Text, View} from '@tarojs/components';
-import commentList from "../../components/comment/comment";
+import CommentList from "../../components/comment/comment";
 import {connect} from "react-redux";
 import {AtForm} from "taro-ui";
 import "./index2.scss"

@@ -168,7 +168,7 @@ const mapDispatchToProp = (dispatch) => {
         },
         sw(id) {
             Taro.navigateTo({
-                url: "/pages/detail/detail?id=" + id
+                url: "/pages/detail2/detail2?id=" + id
             }).then()
         },
         goTo1() {
