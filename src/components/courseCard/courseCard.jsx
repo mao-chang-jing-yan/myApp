@@ -34,7 +34,7 @@ const CourseCard1 = (props) => {
                         <Text className='name'>{courseInfo.name}</Text>
                         <Text className='chapter'>{courseInfo.chapter}</Text>
                         {
-                            !showTime ? "" : <View className='text-list-item'>
+                            !showTime ? "" : <View className='text-list-item' style={{marginTop: "5px"}}>
                                 <Image
                                     src='//img12.360buyimg.com/img/jfs/t1/204451/11/20764/370/624c2784E749adb03/9449dd5819fbe547.png'
                                     className='icon'
@@ -43,7 +43,7 @@ const CourseCard1 = (props) => {
                             </View>
                         }
 
-                        <View className='text-list-item'>
+                        <View className='text-list-item' style={{marginTop: "5px"}}>
                             <Image
                                 src='//img12.360buyimg.com/img/jfs/t1/134369/33/24426/801/624c2784E7a81476a/182a15a0efd3581b.png'
                                 className='icon'

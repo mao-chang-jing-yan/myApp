@@ -25,6 +25,7 @@ class Home2 extends Component {
         require("../../tmp/imgs/img/slide.jpg"),
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
+        "//img10.360buyimg.com/img/jfs/t1/178242/7/22527/103326/62527ca7E89531a67/0fe01dfc4cf9ca08.png",
     ]
     settings = [
         {imageUrl: require("../../tmp/imgs/img/1.png"), text: "闲置数码"},

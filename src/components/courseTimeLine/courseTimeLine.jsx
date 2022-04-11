@@ -17,10 +17,10 @@ const TimeLineItem = (props) => {
                 <View className='at-col at-col-2 time-line-item-time'
                     // style={{border: "1px solid red"}}
                 >
-                    <View style={{width: "100%", overflow: "hidden"}}>
+                    <View style={{width: "100%", overflow: "hidden", textAlign: "center"}}>
                         9:00
                     </View>
-                    <View style={{width: "100%", overflow: "hidden", opacity: 0.6}}>
+                    <View style={{width: "100%", overflow: "hidden", textAlign: "center", opacity: 0.6}}>
                         10:30
                     </View>
                 </View>
@@ -28,7 +28,9 @@ const TimeLineItem = (props) => {
                     // style={{border: "1px solid red"}}
                 >
                     <View className='wrapper'>
-                        <View className='color_view'> </View>
+                        {
+                            !selected ? "" : <View className='color_view'> </View>
+                        }
                     </View>
                     {
                         isLast ? "" : <View className='split_hor'> </View>
@@ -40,45 +42,6 @@ const TimeLineItem = (props) => {
                     <CourseCard1 courseInfo={courseInfo} selected={selected} showTime={false}/>
                 </View>
             </View>
-
-            {/*<View className={selected ? "time-line-item-selected" : "time-line-item"} style={{*/}
-            {/*    marginTop: "5px",*/}
-            {/*    marginLeft: 0,*/}
-            {/*    display: "flex",*/}
-            {/*    flexDirection: "row",*/}
-            {/*    border: "1px solid red",*/}
-            {/*}}>*/}
-
-
-            {/*    <View className={"time"} style={{*/}
-            {/*        width: "15%",*/}
-            {/*        border: "1px solid red",*/}
-            {/*        float: "left",*/}
-            {/*        height: "100%",*/}
-            {/*        left: 0,*/}
-
-            {/*    }}>*/}
-            {/*        <View style={{width: "100%", overflow: "hidden"}}>*/}
-            {/*            9:00*/}
-            {/*        </View>*/}
-            {/*        <View style={{width: "100%", overflow: "hidden", opacity: 0.6}}>*/}
-            {/*            10:30*/}
-            {/*        </View>*/}
-            {/*    </View>*/}
-            {/*    <View style={{*/}
-            {/*        display: "flex", flexDirection: "column", alignItems: "center", width: "15%",*/}
-            {/*        border: "1px solid red",*/}
-            {/*        left: "15%",*/}
-            {/*    }}>*/}
-            {/*        <View className='wrapper'>*/}
-            {/*            <View className='color_view'> </View>*/}
-            {/*        </View>*/}
-            {/*        {*/}
-            {/*            isLast ? "" : <View className='split_hor'> </View>*/}
-            {/*        }*/}
-            {/*    </View>*/}
-            {/*    <CourseCard1 courseInfo={courseInfo} style={{width: "70%"}} selected={selected} showTime={false}/>*/}
-            {/*</View>*/}
         </Fragment>
     )
 }
@@ -91,6 +54,7 @@ const TimeLine = (props) => {
             {
                 courseList.map((item, index) => {
                     const isLast = index === courseList.length - 1;
+                    item.selected = true;
                     return (
                         <TimeLineItem key={item + index} courseInfo={item} isLast={isLast}/>
                     )

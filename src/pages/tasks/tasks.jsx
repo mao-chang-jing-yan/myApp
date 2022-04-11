@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import Taro from '@tarojs/taro'
-import {View, Text, Image, Picker} from '@tarojs/components'
+import {View, Text, Image, Picker, ScrollView} from '@tarojs/components'
 import './tasks.scss'
 import './tasks2.scss'
 import {AtCalendar, AtList, AtListItem, AtTabs, AtTabsPane, AtTimeline} from "taro-ui";
@@ -251,9 +251,12 @@ class Index extends Component {
                         this.getTitles().map((item, index)=>{
                             return(
                                 <AtTabsPane current={this.state.current} index={index} key={item + index}>
-                                    <View style={{marginTop: "20px"}}>
-                                        <TimeLine courseList={[{}, {}]}/>
-                                    </View>
+                                    <ScrollView scrollY={true}>
+                                        <View style={{marginTop: "20px"}}>
+                                            <TimeLine courseList={[{}, {}, {}, {}, {}, {}, {}]}/>
+                                        </View>
+                                    </ScrollView>
+
                                 </AtTabsPane>
                             )
                         })

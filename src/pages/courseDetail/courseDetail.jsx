@@ -36,8 +36,8 @@ const item_info = (props, index) => {
                   style={{
                       lineHeight: "100%",
                       display: "flex",
-                      flexDirection:"column",
-                      justifyContent:"center",
+                      flexDirection: "column",
+                      justifyContent: "center",
                       alignItems: "center",
                       // alignContent: "center",
                       // width: "100px"
@@ -99,17 +99,19 @@ const item_info_list_elem = (props) => {
 }
 
 class Index extends React.Component {
-    constructor () {
+    constructor() {
         super(...arguments)
         this.state = {
             current: 0,
         }
     }
-    handleClick (value) {
+
+    handleClick(value) {
         this.setState({
             current: value
         })
     }
+
     render() {
         return (
             <View className="page">
@@ -119,25 +121,26 @@ class Index extends React.Component {
                 >
 
 
-                    <View className='cnt'>
-                        <View className='cnt_col'>
-                            <Text className='txt'>Today, 17 Sept</Text>
-                            <Text className='tit'>Classroom</Text>
-                        </View>
-                        <View className='cnt1'>
-                            <Image
-                                src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'
-                                className='icon'
-                            />
-                            <Text className='tit1'>Add Class</Text>
-                        </View>
-                    </View>
+                    {/*<View className='cnt'>*/}
+                    {/*    <View className='cnt_col'>*/}
+                    {/*        <Text className='txt'>Today, 17 Sept</Text>*/}
+                    {/*        <Text className='tit'>Classroom</Text>*/}
+                    {/*    </View>*/}
+                    {/*    <View className='cnt1'>*/}
+                    {/*        <Image*/}
+                    {/*            src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'*/}
+                    {/*            className='icon'*/}
+                    {/*        />*/}
+                    {/*        <Text className='tit1'>Add Class</Text>*/}
+                    {/*    </View>*/}
+                    {/*</View>*/}
+
                     <Swiper
                         autoplay={false}
                         indicatorActiveColor={"#FF6344"}
                         indicatorColor={"#fff"}
                         indicatorDots={true}
-                        style={{height: "300px", overflow: "hidden"}}
+                        style={{height: "300px", marginTop: "7px", borderRadius: "5px", overflow: "hidden"}}
                     >
                         <SwiperItem style={{height: "100%"}}>
                             <Image
@@ -181,13 +184,13 @@ class Index extends React.Component {
                         current={this.state.current}
                         scroll
                         tabList={[
-                            { title: '描述' },
-                            { title: '讨论' },
-                            { title: '资源' },
+                            {title: '描述'},
+                            {title: '讨论'},
+                            {title: '资源'},
                         ]}
                         onClick={this.handleClick.bind(this)}>
                         <AtTabsPane current={this.state.current} index={0}>
-                            <View style={{fontSize:"18px",textAlign:"left",height:"100px"}}>
+                            <View style={{fontSize: "18px", textAlign: "left", height: "100px"}}>
                                 <View className='at-article__h2'>
                                     关于本课程
                                 </View>
@@ -206,8 +209,6 @@ class Index extends React.Component {
                             <View style='font-size:18px;text-align:center;height:100px;'>标签页三的内容</View>
                         </AtTabsPane>
                     </AtTabs>
-
-
 
 
                     {/*<View className='wrapper2'>*/}
