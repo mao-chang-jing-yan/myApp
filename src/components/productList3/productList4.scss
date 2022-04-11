@@ -54,6 +54,8 @@ page {
 }
 
 .goods_item {
+    display: flex;
+    flex-direction: column;
     width: 48%;
     box-shadow: 0 1px 6px rgba(0,0,0,.07);
     border: 10px;
@@ -96,11 +98,20 @@ page {
     padding: 10px 20px;
     font-size: 22px;
     justify-content: space-between;
+    width: 100%;
+    //border: 1px solid red;
 }
 
 .goods_item .userInfo,.goods_item .userInfo .left {
     display: flex;
     align-items: center;
+}
+.goods_item .userInfo .right {
+    //display: flex;
+    //align-items: center;
+    //width: 100px;
+    width: 50%;
+    //border: 1px solid red;
 }
 
 .goods_item .userInfo .avatar {

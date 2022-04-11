@@ -24,9 +24,9 @@ const ProductItem4 = (props) => {
                         <Image className="avatar" src={imgurl}> </Image>
                         <View className="nickname">{"茅场晶彦"}</View>
                     </View>
-                    <View>
-                        <Text className="cuIcon-likefill text-orange"> </Text>
-                        {3000}人喜欢
+                    <View className="right">
+                        {/*<Text className="cuIcon-likefill text-orange"> </Text>*/}
+                        {30}人喜欢
                     </View>
                 </View>
             </View>

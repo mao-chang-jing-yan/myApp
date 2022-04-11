@@ -131,18 +131,12 @@ class Search extends Component {
                                     this.getTitles().map((item, index) => {
                                         return (
                                             <AtTabsPane current={this.state.current} index={index} key={item + index}>
-
-                                                <View>
-                                                    {
-                                                        // productList(this.props, this.props.products)
-                                                    }
-                                                    <ProductList4
-                                                        sw={this.props.sw}
-                                                        products={this.props.products}
-                                                    />
-                                                    <View className="nomore">
-                                                        暂无更多数据~
-                                                    </View>
+                                                <ProductList4
+                                                    sw={this.props.sw}
+                                                    products={this.props.products}
+                                                />
+                                                <View className="nomore">
+                                                    暂无更多数据~
                                                 </View>
 
                                             </AtTabsPane>
@@ -193,9 +187,9 @@ const mapDispatchToProp = (dispatch) => {
         search(filter) {
             dispatch(actionCreators.getList(filter))
         },
-        sw() {
+        sw(id) {
             Taro.navigateTo({
-                url: "/pages/detail/detail"
+                url: "/pages/detail2/detail2?id=" + id
             }).then()
         },
         changeFocus(focus) {
