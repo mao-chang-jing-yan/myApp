@@ -1,35 +1,53 @@
 import React, {Component, Fragment} from 'react'
 import Taro from '@tarojs/taro'
-import {View, Text, Image} from '@tarojs/components'
+import {View, Text, Image, Picker} from '@tarojs/components'
 import './tasks.scss'
 import './tasks2.scss'
-import {AtTimeline} from "taro-ui";
+import {AtCalendar, AtList, AtListItem, AtTabs, AtTabsPane, AtTimeline} from "taro-ui";
 import CourseCard1 from "../../components/courseCard/courseCard";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
 
 
-
-
 class Index extends Component {
+    constructor() {
+        super(...arguments)
+        this.state = {
+            current: 0,
+            dateSel: "",
+        }
+    }
+
+    handleClick(value) {
+        this.setState({
+            current: value
+        })
+    }
+
+    onDateChange = e => {
+        this.setState({
+            dateSel: e.detail.value
+        })
+    }
+
     render() {
         return (
             <View
                 src='//img14.360buyimg.com/img/jfs/t1/119751/24/23868/108987/6252df93E1d890cb3/b52b331a3d7a80ef.jpg'
                 className='index'
             >
-                {/*<View className='cnt'>*/}
-                {/*    <View className='cnt_col'>*/}
-                {/*        <Text className='tab_hd_txt'>17 September</Text>*/}
-                {/*        <Text className='txt'>Today</Text>*/}
-                {/*    </View>*/}
-                {/*    <View className='cnt1'>*/}
-                {/*        <Image*/}
-                {/*            src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'*/}
-                {/*            className='icon'*/}
-                {/*        />*/}
-                {/*        <Text className='txt1'>Add Task</Text>*/}
-                {/*    </View>*/}
-                {/*</View>*/}
+                <View className='cnt'>
+                    <View className='cnt_col'>
+                        <Text className='tab_hd_txt'>17 September</Text>
+                        <Text className='txt'>Today</Text>
+                    </View>
+                    <View className='cnt1'>
+                        <Image
+                            src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'
+                            className='icon'
+                        />
+                        <Text className='txt1'>Add Task</Text>
+                    </View>
+                </View>
                 {/*<View className='cnt2'>*/}
                 {/*    <View className='cnt3'>*/}
                 {/*        <Text className='txt2'>Mon</Text>*/}
@@ -188,7 +206,41 @@ class Index extends Component {
                 {/*    ]}*/}
                 {/*>*/}
                 {/*</AtTimeline>*/}
-                <TimeLine courseList={[{}, {}]} />
+                <AtTabs
+                    current={this.state.current}
+                    scroll
+                    tabList={[
+                        {title: <View><View>描述</View><View>描述</View></View>},
+                        {title: <View><View>讨论</View><View>讨论</View></View>},
+                        {title: '1月1日'},
+                        {title: '资源'},
+                        {title: '资源'},
+                        {title: '资源'},
+                        {title: '资源'},
+                        {title: '资源'},
+                    ]}
+                    onClick={this.handleClick.bind(this)}
+                >
+                    <AtTabsPane current={this.state.current} index={0}>
+                        <TimeLine courseList={[{}, {}]}/>
+                    </AtTabsPane>
+                    <AtTabsPane current={this.state.current} index={1}>
+                        <TimeLine courseList={[{}, {}, {}]}/>
+                    </AtTabsPane>
+                    <AtTabsPane current={this.state.current} index={2}>
+
+                    </AtTabsPane>
+                    <View>
+                        <Picker mode='date' onChange={this.onDateChange}>
+                            <AtList>
+                                <AtListItem title='请选择日期' extraText={this.state.dateSel}/>
+                            </AtList>
+                        </Picker>
+                    </View>
+                </AtTabs>
+
+                {/*<AtCalendar />*/}
+
             </View>
         )
     }
