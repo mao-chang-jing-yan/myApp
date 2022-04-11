@@ -31,7 +31,7 @@ export default {
             },
             {
                 text: "课程",
-                pagePath: "pages/courseDetail/courseDetail",
+                pagePath: "pages/tasks/tasks",
                 iconPath: "tmp/imgs/tabbar/home.png",
                 selectedIconPath: "tmp/imgs/tabbar/home_s.png",
             },

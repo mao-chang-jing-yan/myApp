@@ -5,8 +5,13 @@ import "./courseCard.scss"
 
 const CourseCard1 = (props) => {
     console.log(props)
-    let height = props?.style?.height || "auto";
-    let width = props?.style?.width || "auto";
+    const height = props?.style?.height || "auto";
+    const width = props?.style?.width || "auto";
+    // const backgroundColor = props?.style?.backgroundColor || "";
+    // const color = props?.style?.color || "";
+    const showTime = props?.showTime;
+    const selected = props?.selected;
+
 
     let courseInfo = props?.courseInfo || {};
     courseInfo.id = courseInfo.id ? courseInfo.id : "";
@@ -19,18 +24,22 @@ const CourseCard1 = (props) => {
 
     return (
         <Fragment>
-            <View className='CourseCard1-item' style={{height: height, width: width}}>
+            <View className='CourseCard1-item'
+                  style={{height: height, width: width, backgroundColor: selected?"":"rgb(169,255,253, 0.3)", color: selected?"":"black"}}>
                 <View className="CourseCard1-item-container">
                     <View className='text-list'>
                         <Text className='name'>{courseInfo.name}</Text>
                         <Text className='chapter'>{courseInfo.chapter}</Text>
-                        <View className='text-list-item'>
-                            <Image
-                                src='//img12.360buyimg.com/img/jfs/t1/204451/11/20764/370/624c2784E749adb03/9449dd5819fbe547.png'
-                                className='icon'
-                            />
-                            <Text className='text'>{courseInfo.time}</Text>
-                        </View>
+                        {
+                            !showTime ? "" : <View className='text-list-item'>
+                                <Image
+                                    src='//img12.360buyimg.com/img/jfs/t1/204451/11/20764/370/624c2784E749adb03/9449dd5819fbe547.png'
+                                    className='icon'
+                                />
+                                <Text className='text'>{courseInfo.time}</Text>
+                            </View>
+                        }
+
                         <View className='text-list-item'>
                             <Image
                                 src='//img12.360buyimg.com/img/jfs/t1/134369/33/24426/801/624c2784E7a81476a/182a15a0efd3581b.png'
@@ -46,9 +55,13 @@ const CourseCard1 = (props) => {
                             <Text className='text'>{courseInfo.type}</Text>
                         </View>
                     </View>
-                    <View className='image-list'>
+                    <View className={showTime ? "image-list" : "image-list-no-time"}>
                         <Image
-                            src='//img20.360buyimg.com/img/jfs/t1/144074/2/25733/193/624c2784Ed40dc109/782bb7626d501335.png'
+                            // src='//img20.360buyimg.com/img/jfs/t1/144074/2/25733/193/624c2784Ed40dc109/782bb7626d501335.png'
+                            // src='//img11.360buyimg.com/img/jfs/t1/90056/9/24703/195/6252df93E0e9de164/032458f69c2613f7.png'
+                            src={selected?"//img20.360buyimg.com/img/jfs/t1/144074/2/25733/193/624c2784Ed40dc109/782bb7626d501335.png":
+                                "//img11.360buyimg.com/img/jfs/t1/90056/9/24703/195/6252df93E0e9de164/032458f69c2613f7.png"
+                            }
                             className='img'
                         />
                         <Image

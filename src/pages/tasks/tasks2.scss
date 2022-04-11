@@ -1,0 +1,26 @@
+.wrapper {
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    border: 2px solid rgb(127, 134, 255);
+    .color_view {
+        border-radius: 50%;
+        background-color: rgb(127, 134, 255);
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.split_hor {
+    background-color: rgb(84, 176, 122);
+    width: 4px;
+    height: 95%;
+    margin-top: 4px;
+    box-sizing: border-box;
+    border: 1px solid rgb(127, 134, 255);
+}
