@@ -60,19 +60,19 @@ class Index extends Component {
                 src='//img14.360buyimg.com/img/jfs/t1/119751/24/23868/108987/6252df93E1d890cb3/b52b331a3d7a80ef.jpg'
                 className='index'
             >
-                <View className='cnt'>
-                    <View className='cnt_col'>
-                        <Text className='tab_hd_txt'>17 September</Text>
-                        <Text className='txt'>Today</Text>
-                    </View>
-                    <View className='cnt1'>
-                        <Image
-                            src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'
-                            className='icon'
-                        />
-                        <Text className='txt1'>Add Task</Text>
-                    </View>
-                </View>
+                {/*<View className='cnt'>*/}
+                {/*    <View className='cnt_col'>*/}
+                {/*        <Text className='tab_hd_txt'>17 September</Text>*/}
+                {/*        <Text className='txt'>Today</Text>*/}
+                {/*    </View>*/}
+                {/*    <View className='cnt1'>*/}
+                {/*        <Image*/}
+                {/*            src='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'*/}
+                {/*            className='icon'*/}
+                {/*        />*/}
+                {/*        <Text className='txt1'>Add Task</Text>*/}
+                {/*    </View>*/}
+                {/*</View>*/}
                 {/*<View className='cnt2'>*/}
                 {/*    <View className='cnt3'>*/}
                 {/*        <Text className='txt2'>Mon</Text>*/}
