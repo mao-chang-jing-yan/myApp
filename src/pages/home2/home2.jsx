@@ -18,9 +18,15 @@ import productList3 from "../../components/productList3/productList3";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import {actionCreators} from "../../store/homeStore";
 import Taro from "@tarojs/taro";
-
+import messageService from "../../service/messageService"
 
 class Home2 extends Component {
+    constructor() {
+        super(...arguments);
+        messageService["1"] = "";
+        console.log(messageService)
+    }
+
     swiperImages = [
         require("../../tmp/imgs/img/slide.jpg"),
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
@@ -79,7 +85,8 @@ class Home2 extends Component {
                                 {
                                     this.settings.map((item, index) => {
                                         return (
-                                            <View key={item + index} className={"flex-col items-center equal-division-item"}>
+                                            <View key={item + index}
+                                                  className={"flex-col items-center equal-division-item"}>
                                                 <Image className={"image_1"}
                                                        src={item.imageUrl}/>
                                                 <Text className={"text_1"} decode="decode">{item.text}</Text>
