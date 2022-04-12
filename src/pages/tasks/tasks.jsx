@@ -7,54 +7,21 @@ import {AtCalendar, AtList, AtListItem, AtTabs, AtTabsPane, AtTimeline} from "ta
 import CourseCard1 from "../../components/courseCard/courseCard";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
 import {connect} from "react-redux";
+import * as utils from "../../utils";
+import {actionCreators} from "../../store/tasks";
 
 
 class Index extends Component {
     constructor() {
         super(...arguments)
-        this.state = {
-            current: 0,
-            dateSel: "",
-        }
-    }
+        this.props.switchTab(null, this.props.tab_info);
 
-    handleClick(value) {
-        console.log(value)
-        this.setState({
-            current: value
-        })
-    }
-
-    onDateChange = e => {
-        this.setState({
-            dateSel: e.detail.value
-        })
-    }
-
-    getNextDay(d, num = 1) {
-        let d2 = new Date((1000 * 60 * 60 * 24) * num + d.valueOf());
-        return `${d2.getMonth() + 1}月${d2.getDate()}日`
-
-    }
-
-    getTitles() {
-        let titles = [];
-        let current = 3;
-        let d = new Date();
-        for (let i = 0; i < 7; i++) {
-            titles.push({
-                title: this.getNextDay(d, i - current),
-            })
-        }
-
-        return titles;
     }
 
     componentDidMount() {
-        this.setState({
-            current: 3,
-        })
+
     }
+
 
     render() {
         return (
@@ -234,7 +201,7 @@ class Index extends Component {
                 {/*>*/}
                 {/*</AtTimeline>*/}
                 <AtTabs
-                    current={this.state.current}
+                    current={this.props.tab_info.current}
                     scroll
                     // tabList={[
                     //     {title: '1'},
@@ -246,13 +213,15 @@ class Index extends Component {
                     //     // {title: '资源'},
                     //     // {title: '资源'},
                     // ]}
-                    tabList={this.getTitles()}
-                    onClick={this.handleClick.bind(this)}
+                    tabList={this.props.tab_info.titles}
+                    onClick={(index) => {
+                        this.props.switchTab(index, this.props.tab_info);
+                    }}
                 >
                     {
-                        this.getTitles().map((item, index) => {
+                        this.props.tab_info.titles.map((item, index) => {
                             return (
-                                <AtTabsPane current={this.state.current} index={index} key={item + index}>
+                                <AtTabsPane current={this.props.tab_info.current} index={index} key={item + index}>
                                     <ScrollView scrollY={true}>
                                         <View style={{marginTop: "20px"}}>
                                             <TimeLine courseList={this.props.course_info_list}/>
@@ -285,13 +254,19 @@ const mapStateToProps = (state) => {
     return {
         // searchStr: home.get("searchStr"),
         course_info_list: index.get("course_info_list").toJS() || [],
-        time: index.get("time") || new Date(),
-        titles: index.get("titles") || [],
+        tab_info: index.get("tab_info").toJS(),
         // currentPageUrl:state.currentPageUrl7
     }
 }
 const mapDispatchToProp = (dispatch) => {
-    return {}
+    return {
+        initData() {
+
+        },
+        switchTab(index, tab_info) {
+            dispatch(actionCreators.getCourseInfoList(index, tab_info))
+        },
+    }
 }
 
 

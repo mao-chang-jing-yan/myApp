@@ -28,7 +28,7 @@ export const resetCourseInfo = ()=>{
 
 export const submitCourseInfo = (data)=>{
     return{
-        type: constants.SUBMIT_COURSE_INFO,
+        type: constants.GET_COURSE_INFO,
         value: data,
     }
 }

@@ -17,7 +17,7 @@ function* submitCourseInfo(action) {
 }
 
 function* mySaga() {
-    yield takeEvery(constants.SUBMIT_COURSE_INFO, submitCourseInfo);
+    yield takeEvery(constants.GET_COURSE_INFO, submitCourseInfo);
 }
 
 export default mySaga;

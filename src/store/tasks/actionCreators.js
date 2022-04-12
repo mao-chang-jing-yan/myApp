@@ -16,25 +16,19 @@ export const changeCourseInfoList = (data) => {
     }
 };
 
-export const changeTime = (data) => {
+export const changeTabInfo = (data) => {
     return {
-        type: constants.CHANGE_TiME,
+        type: constants.CHANGE_TAB_INFO,
         value: data
     }
 };
 
-export const changeTitles = (data = []) => {
-    return {
-        type: constants.CHANGE_TITLES,
-        value: data
-    }
-};
 
 // 异步
-export const getCourseInfoList = (data) => {
+export const getCourseInfoList = (index, tab_info) => {
     return {
         type: constants.GET_COURSE_INFO_LIST,
-        value: data,
+        value: {index: index, tab_info: tab_info},
     }
 }
 
