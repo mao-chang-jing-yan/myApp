@@ -4,6 +4,7 @@ import {View, Text, Image, ScrollView, Video, SwiperItem, Swiper} from '@tarojs/
 import './courseDetail.scss'
 import {AtCalendar, AtTabs, AtTabsPane} from "taro-ui";
 import CommentList from "../../components/comment/comment";
+import {connect} from "react-redux";
 
 
 const item_info_list = [
@@ -271,4 +272,66 @@ class Index extends React.Component {
     }
 }
 
-export default Index
+const mapStateToProps = (state) => {
+    const index = state.get("index")
+    return {
+        // searchStr: home.get("searchStr"),
+        product: index.get("product").toJS()
+        // currentPageUrl:state.currentPageUrl7
+    }
+}
+const mapDispatchToProp = (dispatch) => {
+    return {
+        resetProduct(newProduct) {
+            // // console.log(Taro.getEnv() === Taro.ENV_TYPE.WEAPP)
+            // newProduct.images = []
+            // newProduct.price = null
+            // newProduct.old_price = null
+            // newProduct.name = ""
+            // newProduct.detail = ""
+            // dispatch(actionCreators.changeProduct(newProduct))
+        },
+        changeImages(k, e, newProduct) {
+            // if (k === "remove") {
+            //     newProduct.images = e
+            //     console.log(e, newProduct)
+            //     dispatch(actionCreators.changeProduct(newProduct))
+            //     return;
+            // }
+            // if (k === "add") {
+            //     const le = e.length - 1
+            //     if (e.length <= 0 || e[le].file === undefined) {
+            //         return;
+            //     }
+            //     newProduct.images.push(
+            //         {"url": e[le].url}
+            //     )
+            //     console.log(k, e, newProduct.images)
+            //     // newProduct.images.append(e[0].url)
+            //     dispatch(actionCreators.changeProduct(newProduct))
+            // }
+        },
+        changeSelect(key, value, newProduct) {
+
+        },
+        changeInput(key, value, newProduct) {
+            console.log(key, value);
+            //
+            // newProduct[key] = value
+            // // console.log(newProduct)
+            // // console.log(k, e, e.detail.value)
+            // dispatch(actionCreators.changeProduct(newProduct))
+        },
+        submitProduct() {
+            // Taro.atMessage({
+            //     'message': "123",
+            //     'type': "error",
+            // })
+            // dispatch(actionCreators.submitProduct())
+        },
+
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProp)(Index);

@@ -6,6 +6,7 @@ import './tasks2.scss'
 import {AtCalendar, AtList, AtListItem, AtTabs, AtTabsPane, AtTimeline} from "taro-ui";
 import CourseCard1 from "../../components/courseCard/courseCard";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
+import {connect} from "react-redux";
 
 
 class Index extends Component {
@@ -42,12 +43,13 @@ class Index extends Component {
         let d = new Date();
         for (let i = 0; i < 7; i++) {
             titles.push({
-                title: this.getNextDay(d, i-current),
+                title: this.getNextDay(d, i - current),
             })
         }
 
         return titles;
     }
+
     componentDidMount() {
         this.setState({
             current: 3,
@@ -248,12 +250,12 @@ class Index extends Component {
                     onClick={this.handleClick.bind(this)}
                 >
                     {
-                        this.getTitles().map((item, index)=>{
-                            return(
+                        this.getTitles().map((item, index) => {
+                            return (
                                 <AtTabsPane current={this.state.current} index={index} key={item + index}>
                                     <ScrollView scrollY={true}>
                                         <View style={{marginTop: "20px"}}>
-                                            <TimeLine courseList={[{}, {}, {}, {}, {}, {}, {}]}/>
+                                            <TimeLine courseList={this.props.course_info_list}/>
                                         </View>
                                     </ScrollView>
 
@@ -264,13 +266,13 @@ class Index extends Component {
 
 
                 </AtTabs>
-                <View>
-                    <Picker mode='date' onChange={this.onDateChange}>
-                        <AtList>
-                            <AtListItem title='请选择日期' extraText={this.state.dateSel}/>
-                        </AtList>
-                    </Picker>
-                </View>
+                {/*<View>*/}
+                {/*    <Picker mode='date' onChange={this.onDateChange}>*/}
+                {/*        <AtList>*/}
+                {/*            <AtListItem title='请选择日期' extraText={this.state.dateSel}/>*/}
+                {/*        </AtList>*/}
+                {/*    </Picker>*/}
+                {/*</View>*/}
                 {/*<AtCalendar />*/}
 
             </View>
@@ -278,4 +280,19 @@ class Index extends Component {
     }
 }
 
-export default Index;
+const mapStateToProps = (state) => {
+    const index = state.get("tasks")
+    return {
+        // searchStr: home.get("searchStr"),
+        course_info_list: index.get("course_info_list").toJS() || [],
+        time: index.get("time") || new Date(),
+        titles: index.get("titles") || [],
+        // currentPageUrl:state.currentPageUrl7
+    }
+}
+const mapDispatchToProp = (dispatch) => {
+    return {}
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProp)(Index);

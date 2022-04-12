@@ -5,6 +5,9 @@ import {reducer as searchReducer} from "./searchStore"
 import {reducer as detailReducer} from "./detailStore"
 import {reducer as loginReducer} from "./loginStore"
 import {reducer as indexReducer} from "./indexStore"
+import {reducer as courseCreateReducer} from "./courseCreate"
+import {reducer as courseDetailReducer} from "./courseDetail"
+import {reducer as tasksReducer} from "./tasks"
 
 
 const reducer = combineReducers({
@@ -14,6 +17,9 @@ const reducer = combineReducers({
     detail: detailReducer,
     login: loginReducer,
     index: indexReducer,
+    courseCreate: courseCreateReducer,
+    courseDetail: courseDetailReducer,
+    tasks: tasksReducer,
 })
 
 export default reducer

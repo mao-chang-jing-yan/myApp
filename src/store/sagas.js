@@ -5,6 +5,9 @@ import {mySaga as indexSagas} from "./indexStore";
 import {mySaga as loginSagas} from "./loginStore";
 import {mySaga as searchSagas} from "./searchStore";
 import {mySaga as userSagas} from "./userStore";
+import {mySaga as courseCreateSagas} from "./courseCreate"
+import {mySaga as courseDetailSagas} from "./courseDetail"
+import {mySaga as tasksSagas} from "./tasks"
 // import Api from '...'
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
@@ -30,6 +33,9 @@ function* rootSaga() {
         fork(loginSagas),
         fork(searchSagas),
         fork(userSagas),
+        fork(courseCreateSagas),
+        fork(courseDetailSagas),
+        fork(tasksSagas),
     ])
 }
 
