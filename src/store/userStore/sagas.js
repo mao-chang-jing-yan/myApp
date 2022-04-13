@@ -86,6 +86,7 @@ function* loginWithCode() {
 function* loginWithPassword(action) {
     try {
         let token = yield getToken();
+        let value = action?.value;
         if (token) {
             yield goToHome();
             return;
@@ -94,14 +95,14 @@ function* loginWithPassword(action) {
             return;
         }
 
-        let value = action?.value;
         const data = yield http.POST(api.Login, {
             type: "account",
             user_name: value.user_name,
             password: value.password
         }, {});
+        console.log("data", data)
         yield put(actionCreators.changeOpenID(data.open_id));
-        if (data.token) {
+        if (data && data.token) {
             yield setToken(data.token);
             yield goToHome();
         }
@@ -113,6 +114,7 @@ function* loginWithPassword(action) {
 
 function* login(action) {
     yield loginWithCode(action);
+    console.log("loginWithPassword(action)")
     yield loginWithPassword(action);
     // yield userLogin(action);
 }
