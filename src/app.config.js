@@ -1,10 +1,10 @@
 export default {
     pages: [
+        'pages/login/login',
         'pages/home2/home2',
         'pages/courseCreate/courseCreate',
         'pages/courseDetail/courseDetail',
         'pages/tasks/tasks',
-        'pages/login/login',
         'pages/search3/index',
         'pages/user2/user2',
         'pages/search2/search2',

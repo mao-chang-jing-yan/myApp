@@ -4,6 +4,14 @@ import {api} from "./index";
 const BASE_URL = api.base + api.wechat;
 const TOKEN = ""
 
+async function getToken() {
+    let token = "";
+    try {
+        token = await Taro.getStorageSync("token") || "";
+    } catch (e) {
+    }
+    return token;
+}
 
 const request = async (options) => {
     return await Taro.request(options).then((res) => {
@@ -30,12 +38,13 @@ export async function baseOptions(params, method = "GET") {
     }
     // let contentType = "application/json;charset=UTF-8";
     // contentType = params.contentType || contentType;
-    let token = "";
-    try {
-        token = await Taro.getStorage({
-            key: "token",
-        }) || "";
-    }catch (e) {}
+    let token = await getToken();
+    if (!token && !url.endsWith(api.Login) && !url.endsWith(api.Register)) {
+        await Taro.navigateTo({
+            url: "/pages/login/login"
+        });
+        return;
+    }
 
     const options = {
         // url: BASE_URL + url,  //地址
