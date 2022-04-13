@@ -244,6 +244,19 @@ class Index extends Component {
                 {/*</View>*/}
                 {/*<AtCalendar />*/}
 
+                <View className={"bottom"}>
+                    <View>
+                        <Picker mode='date' onChange={()=>{}}>
+                            <AtList>
+                                <AtListItem title='请选择日期'/>
+                            </AtList>
+                        </Picker>
+                    </View>
+                    <View className={"mai"}>
+                        新建课程
+                    </View>
+                </View>
+
             </View>
         )
     }

@@ -54,7 +54,9 @@ const TimeLine = (props) => {
             {
                 courseList.map((item, index) => {
                     const isLast = index === courseList.length - 1;
-                    item.selected = true;
+                    if (index === 0){
+                        item.selected = true;
+                    }
                     return (
                         <TimeLineItem key={item + index} courseInfo={item} isLast={isLast}/>
                     )

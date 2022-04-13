@@ -3,7 +3,7 @@ import * as constants from "./actionTypes";
 
 const defaultState = fromJS({
     search_str: "",
-    is_focus: true,
+    is_focus: false,
     list_type: 0,
     history: ["ytfdisf", "dhfuhids", "dfhkdf", "dsfh"],
     recommends: ["21324", "34rer", "245fsd", "freg", "rtret"],

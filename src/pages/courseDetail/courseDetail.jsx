@@ -150,23 +150,23 @@ class Index extends React.Component {
                                 style={{width: "100%", height: "100%"}}
                             />
                         </SwiperItem>
-                        <SwiperItem
-                            // itemId={index} key={"index" + index}
-                            style={{height: "100%"}}
-                        >
-                            <Video
-                                // id='video'
-                                src='https://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'
-                                // src=''
-                                poster='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'
-                                initialTime='0'
-                                controls={true}
-                                autoplay={false}
-                                loop={false}
-                                muted={false}
-                                style={{width: "100%", height: "100%"}}
-                            />
-                        </SwiperItem>
+                        {/*<SwiperItem*/}
+                        {/*    // itemId={index} key={"index" + index}*/}
+                        {/*    style={{height: "100%"}}*/}
+                        {/*>*/}
+                        {/*    <Video*/}
+                        {/*        // id='video'*/}
+                        {/*        src='https://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'*/}
+                        {/*        // src=''*/}
+                        {/*        poster='//img20.360buyimg.com/img/jfs/t1/185286/4/22815/231/62527ca7E95b48761/82c78f6a92c536d2.png'*/}
+                        {/*        initialTime='0'*/}
+                        {/*        controls={true}*/}
+                        {/*        autoplay={false}*/}
+                        {/*        loop={false}*/}
+                        {/*        muted={false}*/}
+                        {/*        style={{width: "100%", height: "100%"}}*/}
+                        {/*    />*/}
+                        {/*</SwiperItem>*/}
 
 
                     </Swiper>

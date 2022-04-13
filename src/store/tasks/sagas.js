@@ -32,8 +32,8 @@ function* getCourseInfoList(action) {
             tab_info.current = index;
         }
         console.log(tab_info)
-        if (tab_info.titles.length > 0){
-            if (index === 0 || index === tab_info.num - 1){
+        if (tab_info.titles.length > 0) {
+            if (index === 0 || index === tab_info.num - 1) {
                 let time = new Date(tab_info.titles[index].time);
                 console.log(time)
                 tab_info.current = 2;
@@ -48,11 +48,14 @@ function* getCourseInfoList(action) {
         }
 
 
-        let data = yield http.POST(api.CreateCourse, {time: tab_info.time});
-        // if (!data) {
-        //     return
-        // }
-        yield put(actionCreators.changeCourseInfoList([{}, {}]));
+        let data = yield http.GET(api.QueryCourse, {time: tab_info.time});
+        if (!data) {
+            return
+        }
+        if (!Array.isArray(data) || data?.length < 0) {
+            data = [{}, {}, {},{},{},{},{}]
+        }
+        yield put(actionCreators.changeCourseInfoList(data));
         yield put(actionCreators.changeTabInfo(tab_info));
 
         // // console.log("data", data, action)

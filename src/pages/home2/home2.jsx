@@ -23,8 +23,8 @@ import messageService from "../../service/messageService"
 class Home2 extends Component {
     constructor() {
         super(...arguments);
-        messageService["1"] = "";
-        console.log(messageService)
+        // messageService["1"] = "";
+        // console.log(messageService)
     }
 
     swiperImages = [
@@ -86,7 +86,9 @@ class Home2 extends Component {
                                     this.settings.map((item, index) => {
                                         return (
                                             <View key={item + index}
-                                                  className={"flex-col items-center equal-division-item"}>
+                                                  className={"flex-col items-center equal-division-item"}
+                                                  onClick={()=>{this.props.goTo1(item.text)}}
+                                            >
                                                 <Image className={"image_1"}
                                                        src={item.imageUrl}/>
                                                 <Text className={"text_1"} decode="decode">{item.text}</Text>
@@ -179,9 +181,13 @@ const mapDispatchToProp = (dispatch) => {
                 url: "/pages/detail2/detail2?id=" + id
             }).then()
         },
-        goTo1() {
+        goTo1(type) {
+            let url = "/pages/search/search";
+            if (type){
+                url+= "?type=" + type;
+            }
             Taro.navigateTo({
-                url: "/pages/search/search"
+                url: url,
             }).then(r => {
                 dispatch(searchActionCreators.changeFocus(true))
             })

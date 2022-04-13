@@ -18,7 +18,7 @@ function* setToken(token) {
 function* getToken() {
     let token = "";
     try {
-        token = yield Taro.setStorageSync("token");
+        token = yield Taro.getStorageSync("token");
     } catch (e) {
     }
     return token
@@ -70,6 +70,9 @@ function* loginWithCode() {
         }
         const data = yield http.POST(api.Login, {type: "code", code: code}, {});
         console.log(data, !data);
+        if (!data) {
+            return;
+        }
         yield put(actionCreators.changeOpenID(data.open_id));
         yield setToken(data.token);
 
@@ -87,6 +90,9 @@ function* loginWithPassword(action) {
             yield goToHome();
             return;
         }
+        if (!value || !value.user_name || !value.password) {
+            return;
+        }
 
         let value = action?.value;
         const data = yield http.POST(api.Login, {
@@ -95,18 +101,19 @@ function* loginWithPassword(action) {
             password: value.password
         }, {});
         yield put(actionCreators.changeOpenID(data.open_id));
-        yield setToken(data.token);
+        if (data.token) {
+            yield setToken(data.token);
+            yield goToHome();
+        }
 
-
-        yield goToHome();
     } catch (e) {
-        console.log(e)
+        console.log("loginWithPassword", e)
     }
 }
 
 function* login(action) {
+    yield loginWithCode(action);
     yield loginWithPassword(action);
-    // yield loginWithCode(action);
     // yield userLogin(action);
 }
 

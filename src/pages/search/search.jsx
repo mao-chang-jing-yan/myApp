@@ -10,12 +10,29 @@ import "taro-ui/dist/style/components/tabs.scss";
 import ProductList4 from "../../components/productList3/productList4";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
 import "taro-ui/dist/style/components/tag.scss";
+import {getCurrentInstance} from "@tarojs/runtime";
 
 class Search extends Component {
     constructor() {
-        super(...arguments)
+        super(...arguments);
+        this.types = ["全部", "鞋服配饰", "文具笔记", "闲置数码"];
+        let current = 0;
+
+        let searchType = getCurrentInstance().router.params.type;
+        let params = {
+            search_str: this.props.search_str,
+        }
+        for (let i = 0; i < this.types.length; i++) {
+            if (this.types[i] === searchType) {
+                params.type = searchType;
+                current = i;
+            }
+        }
+        this.props.search(params);
+        console.log("searchType", searchType, current)
+
         this.state = {
-            current: 0,
+            current: current,
             dateSel: "",
         }
     }
@@ -26,8 +43,6 @@ class Search extends Component {
             current: value
         })
     }
-
-    types = ["全部", "服饰", "电子产品", "书籍"]
 
     getTitles() {
         let titles = [];
