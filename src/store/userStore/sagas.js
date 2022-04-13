@@ -105,8 +105,8 @@ function* loginWithPassword(action) {
 }
 
 function* login(action) {
-    // yield loginWithPassword(action);
-    yield loginWithCode(action);
+    yield loginWithPassword(action);
+    // yield loginWithCode(action);
     // yield userLogin(action);
 }
 

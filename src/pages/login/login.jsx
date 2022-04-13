@@ -1,6 +1,7 @@
 import {Component, Fragment} from "react";
 import {Button, View} from "@tarojs/components";
 import {actionCreators} from "../../store/userStore";
+import {actionCreators as loginActionCreators} from "../../store/loginStore";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 import {AtButton, AtForm, AtInput} from "taro-ui";
@@ -22,7 +23,7 @@ class Login extends Component {
             <View className="page">
                 <AtForm
                     className="login-form"
-                    onSubmit={() => this.props.login()}
+                    onSubmit={() => this.props.login(this.props.user_name, this.props.password)}
                     onReset={() => this.props.reset()}
                 >
                     <AtInput
@@ -31,7 +32,7 @@ class Login extends Component {
                         type='text'
                         placeholder='单行文本'
                         value={this.props.user_name}
-                        onChange={this.props.handleChange.bind(this)}
+                        onChange={(value, event)=>{this.props.changeUserName(value)}}
                     />
 
                     <AtInput
@@ -40,7 +41,7 @@ class Login extends Component {
                         type='password'
                         placeholder='密码不能少于10位数'
                         value={this.props.password}
-                        onChange={this.props.handleChange.bind(this)}
+                        onChange={(value, event)=>{this.props.changePassword(value)}}
                     />
 
                     {/*<AtInput*/}
@@ -80,6 +81,7 @@ const mapStateToProps = (state) => {
         // searchStr: home.get("searchStr"),
         isLogin: user.get("is_login"),
         userInfo: userInfo.toJS(),
+
         login_type: login.get("login_type"),// 登陆方式
         user_name: login.get("user_name"),
         password: login.get("password"),
@@ -98,10 +100,16 @@ const mapDispatchToProp = (dispatch) => {
         reset(){
 
         },
-        login() {
-            dispatch(actionCreators.handleLogin())
+        login(user_name, password) {
+            dispatch(actionCreators.handleLogin(user_name, password))
         },
-        handleChange() {
+        changeUserName(str){
+            dispatch(loginActionCreators.changeUserName(str))
+        },
+        changePassword(str){
+            dispatch(loginActionCreators.changePassword(str))
+        },
+        handleChange(key, value) {
 
         }
     }

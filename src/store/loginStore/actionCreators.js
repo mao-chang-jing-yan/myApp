@@ -1,11 +1,17 @@
 import {constants} from "./index";
 
-export const changeSearchStr = (str) => {
+export const changeUserName = (str) => {
     return {
-        type: constants.CHANGE_SEARCH_STR,
+        type: constants.CHANGE_USER_NAME,
         value: str
     }
 }
 
+export const changePassword = (str) => {
+    return {
+        type: constants.CHANGE_PASSWORD,
+        value: str
+    }
+}
 
 

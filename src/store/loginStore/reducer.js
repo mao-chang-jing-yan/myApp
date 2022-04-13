@@ -15,6 +15,12 @@ export default (state = defaultState, action) => {
     // const newState = JSON.parse(JSON.stringify(state))
 
     switch (action.type) {
+        case constants.CHANGE_USER_NAME:
+            state = state.set("user_name", action.value)
+            break;
+        case constants.CHANGE_PASSWORD:
+            state = state.set("password", action.value)
+            break;
 
         // case constants.CHANGE_FOCUS:
         //     console.log("2321", action.value)

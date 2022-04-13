@@ -68,10 +68,13 @@ export const getUserInfo = () => {
 
 
 // 请求服务端获取openid函数
-export const handleLogin = () => {
+export const handleLogin = (user_name, password) => {
     return {
         type: constants.USER_LOGIN,
-        value: ""
+        value: {
+            user_name: user_name,
+            password: password,
+        }
     }
 };
 
