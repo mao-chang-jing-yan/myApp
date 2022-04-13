@@ -5,9 +5,9 @@ import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 import {AtButton, AtForm, AtInput} from "taro-ui";
 import "./login.scss"
-import "taro-ui/dist/style/components/input.scss";
-import "taro-ui/dist/style/components/icon.scss";
-import "taro-ui/dist/style/components/form.scss";
+// import "taro-ui/dist/style/components/input.scss";
+// import "taro-ui/dist/style/components/icon.scss";
+// import "taro-ui/dist/style/components/form.scss";
 
 class Login extends Component {
     constructor() {

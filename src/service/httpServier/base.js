@@ -7,7 +7,7 @@ const TOKEN = ""
 async function getToken() {
     let token = "";
     try {
-        token = await Taro.getStorageSync("token") || "";
+        token = await Taro.getStorageSync("token");
     } catch (e) {
     }
     return token;
