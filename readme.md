@@ -12,4 +12,6 @@
 ## 开发环境搭建
     安装 node14
     npm install -g yarn
+    yarn global add @tarojs/cli
+    yarn add  node-sass
     yarn
