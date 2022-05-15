@@ -10,7 +10,7 @@
     yarn config set registry https://registry.yarnpkg.com --global
 
 ## 开发环境搭建
-    安装 node14
+    安装 node v14.18.3
     npm install -g yarn
     yarn global add @tarojs/cli
     yarn add  node-sass
