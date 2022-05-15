@@ -14,6 +14,7 @@ class Login extends Component {
     constructor() {
         super();
     }
+
     componentDidMount() {
         this.props.login();
     }
@@ -23,8 +24,6 @@ class Login extends Component {
             <View className="page">
                 <AtForm
                     className="login-form"
-                    onSubmit={() => this.props.login(this.props.user_name, this.props.password)}
-                    onReset={() => this.props.reset()}
                 >
                     <AtInput
                         name='value'
@@ -32,7 +31,9 @@ class Login extends Component {
                         type='text'
                         placeholder='单行文本'
                         value={this.props.user_name}
-                        onChange={(value, event)=>{this.props.changeUserName(value)}}
+                        onChange={(value, event) => {
+                            this.props.changeUserName(value)
+                        }}
                     />
 
                     <AtInput
@@ -41,7 +42,9 @@ class Login extends Component {
                         type='password'
                         placeholder='密码不能少于10位数'
                         value={this.props.password}
-                        onChange={(value, event)=>{this.props.changePassword(value)}}
+                        onChange={(value, event) => {
+                            this.props.changePassword(value)
+                        }}
                     />
 
                     {/*<AtInput*/}
@@ -61,8 +64,9 @@ class Login extends Component {
                     {/*    value={this.props.password}*/}
                     {/*    onChange={this.props.handleChange.bind(this)}*/}
                     {/*/>*/}
-                    <AtButton formType='submit' customStyle={{marginTop: "30px"}}>登陆</AtButton>
-                    <AtButton formType='reset'>重置</AtButton>
+                    <AtButton customStyle={{marginTop: "30px"}}
+                              onClick={() => this.props.login(this.props.user_name, this.props.password)}>登陆</AtButton>
+                    <AtButton onClick={() => this.props.reset()}>重置</AtButton>
                 </AtForm>
                 {/*<Button onClick={() => this.props.login()}>*/}
                 {/*    登陆*/}
@@ -97,16 +101,17 @@ const mapDispatchToProp = (dispatch) => {
         //         url: "/pages/detail/detail?id=" + id
         //     }).then()
         // },
-        reset(){
-
+        reset() {
+            dispatch(loginActionCreators.changeUserName(""))
+            dispatch(loginActionCreators.changePassword(""))
         },
         login(user_name, password) {
             dispatch(actionCreators.handleLogin(user_name, password))
         },
-        changeUserName(str){
+        changeUserName(str) {
             dispatch(loginActionCreators.changeUserName(str))
         },
-        changePassword(str){
+        changePassword(str) {
             dispatch(loginActionCreators.changePassword(str))
         },
         handleChange(key, value) {

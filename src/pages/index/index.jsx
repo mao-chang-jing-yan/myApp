@@ -216,8 +216,8 @@ class Index extends Component {
                     />
 
 
-                    <AtButton formType='submit' onClick={() => this.props.submitProduct()}>提交</AtButton>
-                    <AtButton formType='reset' onClick={() => {
+                    <AtButton onClick={() => this.props.submitProduct()}>提交</AtButton>
+                    <AtButton onClick={() => {
                         this.props.resetProduct(product)
                     }}>重置</AtButton>
                 </AtForm>
