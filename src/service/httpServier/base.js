@@ -15,17 +15,30 @@ async function getToken() {
 
 const request = async (options) => {
     return await Taro.request(options).then((res) => {
-        // console.log("res = = ", res)
-        if (res === null || res.statusCode !== 200) {
+        console.log("res.data = ", res);
+        if (res === null) {
             return null
         }
+        if (res.statusCode === 401) {
+            return Taro.redirectTo({url: "/pages/login/login"})
+        }
+        if (res.statusCode === 200) {
+            if (res.data.status === 0) {
+                return res.data.res;
+            } else {
+                console.log(res.data.msg)
+            }
+        }
         if (res.errMsg === "token err") {
-            return Taro.navigateTo("/pages/login")
+            return Taro.redirectTo({url: "/pages/login/login"})
         }
         // console.log("res.data = ", res.data);
         return res.data;
     }).catch(err => {
-        // console.log("err = = ", err)
+        if (err.status === 401) {
+            return Taro.redirectTo({url: "/pages/login/login"})
+        }
+        console.log("err = = ", err)
         return null
     });
 }
