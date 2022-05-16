@@ -25,6 +25,40 @@
     height: 100px;
     justify-content: space-between;
 }
+
+.head{
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    //border: 1px solid red;
+    justify-content: space-between;
+    //height: 41.2309045791626px;
+    margin-top: 30.769095420837402px;
+
+    .head-title{
+        text-align: center;
+        font-family: uniqueID∞version∞PingFang-SC∞Heavy;
+        //font-size: 28.4618091583252px;
+        letter-spacing: 2.8px;
+        line-height: 1.41;
+        flex-shrink: 0;
+        //height: 42px;
+        margin-top: -5.769095420837402px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 489px;
+        overflow: hidden;
+    }
+    .head-icon{
+        display: flex;
+        float: right;
+        flex-shrink: 0;
+        width: 50px;
+        height: 50px;
+    }
+}
+
 //.cnt {
 //    display: flex;
 //    justify-content: space-between;
