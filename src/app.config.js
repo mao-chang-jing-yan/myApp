@@ -1,5 +1,6 @@
 export default {
     pages: [
+        'pages/tasks2/tasks2',
         'pages/home2/home2',
         'pages/test1/test1',
         'pages/login/login',
