@@ -24,6 +24,27 @@ function* getToken() {
     return token
 }
 
+function* reFreshToken() {
+    let token = yield getToken();
+    if (!token) {
+        return null
+    }
+    let newToken = null;
+    try {
+        let data = yield http.POST(api.ReFreshToken, {});
+        yield put(actionCreators.changeOpenID(data.open_id));
+        if (!data.token) {
+            return null;
+        }
+        yield setToken(data.token);
+        newToken = data.token;
+        yield goToHome();
+    } catch (e) {
+        yield setToken("");
+    }
+    return newToken
+}
+
 
 function* getCode() {
     try {
@@ -113,6 +134,7 @@ function* loginWithPassword(action) {
 }
 
 function* login(action) {
+    yield reFreshToken();
     yield loginWithCode(action);
     yield loginWithPassword(action);
     // yield userLogin(action);

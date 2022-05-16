@@ -15,17 +15,18 @@ async function getToken() {
 
 const request = async (options) => {
     return await Taro.request(options).then((res) => {
-        console.log("res.data = ", res);
         if (res === null) {
             return null
-        }
-        if (res.statusCode === 401) {
-            return Taro.redirectTo({url: "/pages/login/login"})
         }
         if (res.statusCode === 200) {
             if (res.data.status === 0) {
                 return res.data.res;
             } else {
+                Taro.showToast({
+                    title: JSON.stringify(res.data.msg),
+                    icon: 'error',
+                    duration: 2000,
+                })
                 console.log(res.data.msg)
             }
         }
@@ -36,10 +37,20 @@ const request = async (options) => {
         return res.data;
     }).catch(err => {
         if (err.status === 401) {
-            return Taro.redirectTo({url: "/pages/login/login"})
+            return Taro.showToast({
+                title: JSON.stringify(err.statusText),
+                icon: 'error',
+                duration: 2000,
+                complete: function (r) {
+                    Taro.redirectTo({url: "/pages/login/login"})
+                }
+            })
         }
-        console.log("err = = ", err)
-        return null
+        return Taro.showToast({
+            title: JSON.stringify(err.statusText),
+            icon: 'error',
+            duration: 2000,
+        })
     });
 }
 

@@ -9,7 +9,7 @@ import {AtSearchBar, AtTabs, AtTabsPane, AtTag} from "taro-ui";
 import "taro-ui/dist/style/components/tabs.scss";
 import ProductList4 from "../../components/productList3/productList4";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
-import "taro-ui/dist/style/components/tag.scss";
+// import "taro-ui/dist/style/components/tag.scss";
 import {getCurrentInstance} from "@tarojs/runtime";
 
 class Search extends Component {

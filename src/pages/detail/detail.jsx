@@ -8,8 +8,8 @@ import {connect} from "react-redux";
 import Taro from "@tarojs/taro";
 import {getCurrentInstance} from "@tarojs/runtime";
 import {AtDivider} from "taro-ui";
-import "taro-ui/dist/style/components/divider.scss";
-import "taro-ui/dist/style/components/icon.scss";
+// import "taro-ui/dist/style/components/divider.scss";
+// import "taro-ui/dist/style/components/icon.scss";
 
 class Detail extends Component {
     componentDidMount() {

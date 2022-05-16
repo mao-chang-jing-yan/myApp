@@ -1,14 +1,24 @@
 import React, {Component} from 'react'
 import {View, Text, Image, Video, Picker} from '@tarojs/components'
 import './index.scss'
-import {AtAvatar,AtMessage, AtButton, AtForm, AtImagePicker, AtInput, AtTextarea, AtList, AtListItem} from 'taro-ui'
-import "taro-ui/dist/style/components/form.scss";
-import "taro-ui/dist/style/components/image-picker.scss";
-import "taro-ui/dist/style/components/icon.scss";
+import {
+    AtAvatar,
+    AtMessage,
+    AtButton,
+    AtForm,
+    AtImagePicker,
+    AtInput,
+    AtTextarea,
+    AtList,
+    AtListItem,
+    AtCalendar
+} from 'taro-ui'
 import {actionCreators} from "../../store/indexStore/index";
 import Taro from "@tarojs/taro";
 import {connect} from "react-redux";
 import {api} from "../../service/httpServier";
+import './index.scss'
+
 
 class Index extends Component {
     old_new_type = ["全新", "九成新", "五成新"]
@@ -21,6 +31,8 @@ class Index extends Component {
 
         return (
             <View className={"index"}>
+                <AtCalendar />
+
                 <AtMessage />
                 <View style={{
                     // float: "left",
