@@ -25,7 +25,7 @@ import TimeLine2 from "@components/courseTimeLine/courseTimeLine2";
 class Index extends Component {
     constructor() {
         super(...arguments)
-        this.props.switchTab(null, this.props.tab_info);
+        this.props.switchTab(null, null, this.props.tab_info);
 
     }
 
@@ -37,14 +37,33 @@ class Index extends Component {
     render() {
         return (
             <Fragment>
-                <AtModal isOpened={false}>
-                    <AtModalHeader>请选择时间</AtModalHeader>
+                <AtModal
+                    isOpened={this.props.show_model}
+                    onClose={() => {
+                        this.props.changeShowModel(false)
+                    }}
+                    onCancel={() => {
+                        this.props.changeShowModel(false)
+                    }}
+                    onConfirm={() => {
+                        this.props.changeShowModel(false)
+                    }}
+                >
+                    <AtModalHeader>请选择日期</AtModalHeader>
                     <AtModalContent>
-                        <AtCalendar />
+                        <AtCalendar currentDate={this.props.search_date} onDayClick={(e) => {
+                            this.props.changeShowModelDate(e.value)
+                        }}/>
                     </AtModalContent>
                     <AtModalAction>
-                        <Button>取消</Button>
-                        <Button>确定</Button>
+                        <Button onClick={() => {
+                            this.props.changeShowModel(false)
+                        }}>取消</Button>
+                        <Button onClick={() => {
+                            this.props.changeShowModel(false)
+                            this.props.changeSearchDate(this.props.show_model_date)
+                            this.props.switchTab(this.props.tab_info.current, this.props.show_model_date, this.props.tab_info)
+                        }}>确定</Button>
                     </AtModalAction>
                 </AtModal>
 
@@ -57,6 +76,9 @@ class Index extends Component {
                         <Image
                             src='//img14.360buyimg.com/img/jfs/t1/109494/30/28097/1647/62810c2fE30b1e525/5ded3165a71443b5.png'
                             className='head-icon'
+                            onClick={() => {
+                                this.props.changeShowModel(true)
+                            }}
                         > </Image>
                     </View>
 
@@ -257,7 +279,7 @@ class Index extends Component {
                             }
                         })}
                         onClick={(index) => {
-                            this.props.switchTab(index, this.props.tab_info);
+                            this.props.switchTab(index, null, this.props.tab_info);
                         }}
                     >
                         {
@@ -309,7 +331,9 @@ class Index extends Component {
 const mapStateToProps = (state) => {
     const index = state.get("tasks")
     return {
-        // searchStr: home.get("searchStr"),
+        show_model: index.get("show_model"),
+        show_model_date: index.get("show_model_date"),
+        search_date: index.get("search_date"),
         course_info_list: index.get("course_info_list").toJS() || [],
         tab_info: index.get("tab_info").toJS(),
         // currentPageUrl:state.currentPageUrl7
@@ -317,14 +341,20 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProp = (dispatch) => {
     return {
-        showSelectDate(){
-
+        changeShowModel(b) {
+            dispatch(actionCreators.changeShowModel(b))
+        },
+        changeShowModelDate(date) {
+            dispatch(actionCreators.changeShowModelDate(date))
+        },
+        changeSearchDate(date) {
+            dispatch(actionCreators.changeSearchDate(date))
         },
         initData() {
 
         },
-        switchTab(index, tab_info) {
-            dispatch(actionCreators.getCourseInfoList(index, tab_info))
+        switchTab(index, search_date, tab_info) {
+            dispatch(actionCreators.getCourseInfoList(index, search_date, tab_info))
         },
     }
 }

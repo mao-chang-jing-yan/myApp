@@ -15,11 +15,12 @@ function* getCourseInfoList(action) {
     try {
         let index = action.value.index;
         let tab_info = action.value.tab_info;
+        let search_date = action.value.search_date;
         // tab_info = JSON.parse(JSON.stringify(tab_info));
 
-        if (index === null || index === undefined || tab_info.titles.length < tab_info.num) {
+        if (search_date || index === null || index === undefined || tab_info.titles.length < tab_info.num) {
             tab_info.titles = [];
-            let date1 = new Date();
+            let date1 = search_date ? new Date(search_date) : new Date();
             for (let i = 0; i < tab_info.num; i++) {
                 tab_info.titles.push({
                     title: utils.getNextDayStr(date1, i - tab_info.current),
@@ -34,7 +35,7 @@ function* getCourseInfoList(action) {
         console.log(tab_info)
         if (tab_info.titles.length > 0) {
             if (index === 0 || index === tab_info.num - 1) {
-                let time = new Date(tab_info.titles[index].time);
+                let time = search_date ? new Date(search_date) : new Date(tab_info.titles[index].time);
                 console.log(time)
                 tab_info.current = 2;
                 tab_info.titles = [];
@@ -48,12 +49,12 @@ function* getCourseInfoList(action) {
         }
 
 
-        let data = yield http.GET(api.QueryCourse, {time: tab_info.time});
+        let data = yield http.GET(api.QueryCourse, {time: tab_info.titles[tab_info.current].time});
         if (!data) {
             return
         }
         if (!Array.isArray(data) || data?.length < 0) {
-            data = [{}, {}, {},{},{},{},{}]
+            data = [{}, {}, {}, {}, {}, {}, {}]
         }
         yield put(actionCreators.changeCourseInfoList(data));
         yield put(actionCreators.changeTabInfo(tab_info));
