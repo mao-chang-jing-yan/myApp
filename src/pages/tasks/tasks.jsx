@@ -18,7 +18,8 @@ import CourseCard1 from "../../components/courseCard/courseCard";
 import TimeLine from "../../components/courseTimeLine/courseTimeLine";
 import {connect} from "react-redux";
 import * as utils from "../../utils";
-import {actionCreators} from "../../store/tasks";
+import {actionCreators} from "@store/tasks";
+import TimeLine2 from "@components/courseTimeLine/courseTimeLine2";
 
 
 class Index extends Component {
@@ -265,7 +266,7 @@ class Index extends Component {
                                     <AtTabsPane current={this.props.tab_info.current} index={index} key={item + index}>
                                         <ScrollView scrollY={true}>
                                             <View style={{marginTop: "20px"}}>
-                                                <TimeLine courseList={this.props.course_info_list}/>
+                                                <TimeLine2 courseList={this.props.course_info_list}/>
                                             </View>
                                         </ScrollView>
 
@@ -316,6 +317,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProp = (dispatch) => {
     return {
+        showSelectDate(){
+
+        },
         initData() {
 
         },

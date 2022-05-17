@@ -1,3 +1,4 @@
+const path = require('path')
 const config = {
     projectName: 'myApp',
     date: '2021-11-13',
@@ -14,6 +15,12 @@ const config = {
         // '@tarojs/plugin-less', // 使用 Less
         // '@tarojs/plugin-stylus', // 使用 Stylus
     ],
+    alias: {
+        '@services': path.resolve(__dirname, '..', 'src/service'),
+        '@components': path.resolve(__dirname, '..', 'src/components'),
+        '@assets': path.resolve(__dirname, '..', 'src/tmp'),
+        '@store': path.resolve(__dirname, '..', 'src/store')
+    },
     defineConstants: {},
     copy: {
         patterns: [],

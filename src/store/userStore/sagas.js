@@ -38,7 +38,9 @@ function* reFreshToken() {
         }
         yield setToken(data.token);
         newToken = data.token;
-        yield goToHome();
+        if (newToken){
+            yield goToHome();
+        }
     } catch (e) {
         yield setToken("");
     }
@@ -80,10 +82,10 @@ function* loginWithPhone(action) {
 function* loginWithCode() {
     try {
         let code = yield getCode();
-        let token = yield getToken();
+        let token = yield reFreshToken();
         if (token) {
             yield goToHome();
-            return;
+            return true;
         }
         console.log(code, !code);
         if (!code) {
@@ -94,23 +96,29 @@ function* loginWithCode() {
         if (!data) {
             return;
         }
-        yield put(actionCreators.changeOpenID(data.open_id));
-        yield setToken(data.token);
+        if (data && data.open_id) {
+            yield put(actionCreators.changeOpenID(data.open_id));
+        }
 
-
-        yield goToHome();
+        if (data && data.token) {
+            yield setToken(data.token);
+            yield goToHome();
+            return true;
+        }
+        return false
     } catch (e) {
         console.log("loginWithCode", e)
     }
+    return false
 }
 
 function* loginWithPassword(action) {
     try {
-        let token = yield getToken();
+        let token = yield reFreshToken();
         let value = action?.value;
         if (token) {
             yield goToHome();
-            return;
+            return true;
         }
         if (!value || !value.user_name || !value.password) {
             return;
@@ -126,16 +134,23 @@ function* loginWithPassword(action) {
         if (data && data.token) {
             yield setToken(data.token);
             yield goToHome();
+            return true;
         }
-
     } catch (e) {
         console.log("loginWithPassword", e)
     }
+    return false
 }
 
 function* login(action) {
-    yield reFreshToken();
-    yield loginWithCode(action);
+    // let res = yield reFreshToken();
+    // if (res) {
+    //     return
+    // }
+    let res = yield loginWithCode(action);
+    if (res) {
+        return
+    }
     yield loginWithPassword(action);
     // yield userLogin(action);
 }

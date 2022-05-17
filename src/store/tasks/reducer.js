@@ -4,7 +4,7 @@ import * as constants from "./actionTypes";
 const defaultState = fromJS({
     tab_info: {
         current: 3,
-        num: 7,
+        num: 10,
         titles: [],
     },
     course_info_list: [

@@ -15,6 +15,7 @@ async function getToken() {
 
 const request = async (options) => {
     return await Taro.request(options).then((res) => {
+        console.log("res = ", res);
         if (res === null) {
             return null
         }
@@ -30,12 +31,22 @@ const request = async (options) => {
                 console.log(res.data.msg)
             }
         }
+        if (res.statusCode === 401) {
+            return Taro.showToast({
+                title: JSON.stringify("未登录"),
+                icon: 'error',
+                duration: 2000,
+                complete: function (r) {
+                    Taro.redirectTo({url: "/pages/login/login"})
+                }
+            })
+        }
         if (res.errMsg === "token err") {
             return Taro.redirectTo({url: "/pages/login/login"})
         }
-        // console.log("res.data = ", res.data);
         return res.data;
     }).catch(err => {
+        console.log("err", err)
         if (err.status === 401) {
             return Taro.showToast({
                 title: JSON.stringify(err.statusText),
