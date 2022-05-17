@@ -14,11 +14,10 @@ import {
 import './home2.scss'
 
 import {connect} from "react-redux";
-import productList3 from "../../components/productList3/productList3";
-import {actionCreators as searchActionCreators} from "../../store/searchStore";
-import {actionCreators} from "../../store/homeStore";
+import productList3 from "@components/productList3/productList3";
+import {actionCreators as searchActionCreators} from "@store/searchStore";
+import {actionCreators} from "@store/homeStore";
 import Taro from "@tarojs/taro";
-import messageService from "../../service/messageService"
 
 class Home2 extends Component {
     constructor() {

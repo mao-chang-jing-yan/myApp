@@ -16,13 +16,7 @@ import {connect} from "react-redux";
 import {actionCreators} from "../../store/homeStore";
 import {actionCreators as searchActionCreators} from "../../store/searchStore";
 import Taro from "@tarojs/taro";
-// import "taro-ui/dist/style/components/flex.scss";
-// import "taro-ui/dist/style/components/nav-bar.scss";
-// import "taro-ui/dist/style/components/icon.scss";
-import {AtNavBar, AtSearchBar} from "taro-ui";
 import productList, {productList2} from "../../components/productList/productList";
-import {changeListType, getListData} from "../../store/homeStore/actionCreators";
-import {api} from "../../service/httpServier";
 
 class Home extends Component {
     swiperImages = [
