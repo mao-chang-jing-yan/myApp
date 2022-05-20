@@ -6,7 +6,8 @@ import Taro from "@tarojs/taro";
 
 function* submitProduct(action) {
     try {
-        yield http.POST(api.Login, {}, {});
+        delete action.value["id"];
+        yield http.POST(api.CreateProduct, action.value, {});
     } catch (e) {
         Taro.atMessage({
             'message': e,

@@ -49,14 +49,42 @@ function* getCourseInfoList(action) {
         }
 
 
-        let data = yield http.GET(api.QueryCourse, {time: tab_info.titles[tab_info.current].time});
+        let data = yield http.GET(api.QueryCourse,
+            {
+                time: tab_info.titles[tab_info.current].time,
+                pi: 1,
+                ps: 10,
+            }
+        );
         if (!data) {
             return
         }
-        if (!Array.isArray(data) || data?.length < 0) {
-            data = [{}, {}, {}, {}, {}, {}, {}]
+        let d = []
+        for (let i = 0; i < data.data.length; i++) {
+            let item1 = data.data[i]
+            let item = {
+                id: 0,
+                name: "",
+                teacher: "",
+                description: "",
+                start_time: "",
+                end_time: "",
+                start_date:"",
+                end_date:"",
+                week: "",
+            }
+
+            for (const itemElement in item1) {
+                if (item1.hasOwnProperty(itemElement)){
+                    item[itemElement] = item1[itemElement]
+                }
+            }
+            d.push(item)
         }
-        yield put(actionCreators.changeCourseInfoList(data));
+        if (!Array.isArray(d) || d?.length < 0) {
+            d = [{}, {}, {}, {}, {}, {}, {}]
+        }
+        yield put(actionCreators.changeCourseInfoList(d));
         yield put(actionCreators.changeTabInfo(tab_info));
 
         // // console.log("data", data, action)

@@ -31,7 +31,7 @@ class Index extends Component {
 
         return (
             <View className={"index"}>
-                <AtCalendar />
+                {/*<AtCalendar />*/}
 
                 <AtMessage />
                 <View style={{
@@ -228,7 +228,7 @@ class Index extends Component {
                     />
 
 
-                    <AtButton onClick={() => this.props.submitProduct()}>提交</AtButton>
+                    <AtButton onClick={() => this.props.submitProduct(product)}>提交</AtButton>
                     <AtButton onClick={() => {
                         this.props.resetProduct(product)
                     }}>重置</AtButton>
@@ -310,12 +310,8 @@ const mapDispatchToProp = (dispatch) => {
             // console.log(k, e, e.detail.value)
             dispatch(actionCreators.changeProduct(newProduct))
         },
-        submitProduct() {
-            Taro.atMessage({
-                'message': "123",
-                'type': "error",
-            })
-            dispatch(actionCreators.submitProduct())
+        submitProduct(info) {
+            dispatch(actionCreators.submitProduct(info))
         },
 
     }

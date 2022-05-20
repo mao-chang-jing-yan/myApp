@@ -18,23 +18,32 @@ class Search extends Component {
         this.types = ["全部", "鞋服配饰", "文具笔记", "闲置数码"];
         let current = 0;
 
-        let searchType = getCurrentInstance().router.params.type;
-        let params = {
-            search_str: this.props.search_str,
-        }
-        for (let i = 0; i < this.types.length; i++) {
-            if (this.types[i] === searchType) {
-                params.type = searchType;
-                current = i;
-            }
-        }
-        this.props.search(params);
-        console.log("searchType", searchType, current)
-
         this.state = {
             current: current,
             dateSel: "",
         }
+    }
+
+    componentDidMount() {
+        // let current = 0;
+        // let searchType = getCurrentInstance().router.params.type;
+        // let params = {
+        //     search_str: this.props.search_str,
+        //     pi: 1,
+        //     ps: 100,
+        // }
+        // for (let i = 0; i < this.types.length; i++) {
+        //     if (this.types[i] === searchType) {
+        //         params.type = searchType;
+        //         current = i;
+        //     }
+        // }
+        // this.props.search(params);
+        // console.log("searchType", searchType, current)
+        // this.setState({
+        //     current: current,
+        //     dateSel: "",
+        // })
     }
 
     handleClick(value) {
@@ -64,8 +73,13 @@ class Search extends Component {
                             customStyle={{width: "100%"}}
                             showActionButton
                             value={this.props.search_str}
-                            onChange={(value, event) => this.props.changeSearchStr(event)}
-                            onActionClick={this.props.search({search_str: this.props.search_str})}
+                            // onChange={(value, event) => this.props.changeSearchStr(event)}
+                            // onConfirm={}
+                            onActionClick={()=>this.props.search({
+                                search_str: this.props.search_str,
+                                pi: 1,
+                                ps: 100,
+                            })}
                             focus={this.props.is_focus}
                             onFocus={() => {
                                 this.props.changeFocus(true)
@@ -200,6 +214,7 @@ const mapDispatchToProp = (dispatch) => {
             dispatch(actionCreators.changeSearchStr(value))
         },
         search(filter) {
+            console.log("search", filter)
             dispatch(actionCreators.getList(filter))
         },
         sw(id) {

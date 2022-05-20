@@ -26,6 +26,10 @@ class Home2 extends Component {
         // console.log(messageService)
     }
 
+    componentDidMount() {
+        this.props.getData()
+    }
+
     swiperImages = [
         require("../../tmp/imgs/img/slide.jpg"),
         "https://img1.baidu.com/it/u=1600490630,2806686848&fm=26&fmt=auto",
@@ -164,6 +168,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProp = (dispatch) => {
     return {
+        getData(){
+            dispatch(actionCreators.getListData({pi:1, ps:15}))
+        },
         changeCurrentUrl(e) {
             // const action = CreateChangeCurrentUrl()
             // action.value = JSON.parse(JSON.stringify(e.keyPath)).reverse()

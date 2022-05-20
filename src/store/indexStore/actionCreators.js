@@ -8,10 +8,10 @@ export const changeProduct = (data) => {
     }
 }
 
-export const submitProduct = () => {
+export const submitProduct = (data= {}) => {
     return {
         type: constants.SUBMIT_PRODUCT,
-        value: ""
+        value: data
     }
 }
 
