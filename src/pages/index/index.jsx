@@ -291,9 +291,8 @@ const mapDispatchToProp = (dispatch) => {
                 if (e.length <= 0 || e[le].file === undefined) {
                     return;
                 }
-                newProduct.images.push(
-                    {"url": e[le].url}
-                )
+                newProduct.images.push(e[le])
+                newProduct["img_url"] = e[le].url
                 console.log(k, e, newProduct.images)
                 // newProduct.images.append(e[0].url)
                 dispatch(actionCreators.changeProduct(newProduct))

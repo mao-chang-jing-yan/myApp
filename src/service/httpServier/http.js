@@ -48,47 +48,47 @@ export async function Delete(url, data, params_) {
 //
 // }
 
-export const fileId_to_url = (file_id)=>{
-    return api.base+api.ImageGet+"?filename="+file_id
+export const fileId_to_url = (file_id) => {
+    return api.base + api.ImageGet + "?filename=" + file_id
 }
 
-export const UploadFile = async (fileRes) => {
-    // try {
-    let tempFiles = fileRes.tempFiles
 
-    // return await POST(api.uploadImg, {
-    //     filePath: tempFiles[0].path,
-    //     name: 'file',
-    //     formData: {
-    //         // 'user': 'test',
-    //         "size": tempFiles[0].size,
-    //         "type": tempFiles[0].type,
-    //         "file_name": tempFiles[0].path,
-    //     },
-    // },{})
-
-    try {
-        return await Taro.uploadFile({
-            url: api.base + api.ImageUpload,
-            filePath: tempFiles[0].path,
-            name: 'file',
-            formData: {
-                // 'user': 'test',
-                "size": tempFiles[0].size,
-                "type": tempFiles[0].type,
-                "file_name": tempFiles[0].path,
-            },
-
-        }).then(res=>{
-            if (res?.data){
-                return JSON.parse(res?.data)
-            }
-            return res?.data
-        }).catch(err=>{return {}})
-    } catch (e) {
-
+export const UploadFile = async (fileInfo) => {
+    if (fileInfo && fileInfo.hasOwnProperty("path") && fileInfo.hasOwnProperty("size") && fileInfo.hasOwnProperty("type")) {
+        try {
+            return await Taro.uploadFile({
+                url: api.base + api.ImageUpload,
+                filePath: fileInfo.path,
+                name: 'file',
+                formData: {
+                    // 'user': 'test',
+                    "size": fileInfo.size,
+                    "type": fileInfo.type,
+                    "file_name": fileInfo.path,
+                },
+            }).then(res => {
+                if (res?.data) {
+                    return JSON.parse(res?.data)
+                }
+                return res?.data
+            }).catch(err => {
+                return {}
+            })
+        } catch (e) {
+            console.log(e)
+        }
     }
     return {}
+}
+
+
+export const UploadFiles = async (fileRes) => {
+    let tempFiles = fileRes.tempFiles;
+    let res = []
+    for (let i = 0; i < tempFiles.length; i++) {
+        res.push(await UploadFiles(tempFiles[i]))
+    }
+    return res
 }
 
 

@@ -184,8 +184,11 @@ function* uploadAvaUrl(action) {
     try {
         let fr = yield Taro.chooseImage({})
         console.log("f", fr);
-        let res = yield http.UploadFile(fr)
-        let file_url = yield http.fileId_to_url(res?.file_id)
+        let res = yield http.UploadFiles(fr)
+        if (res.length < 0){
+            return
+        }
+        let file_url = yield http.fileId_to_url(res[0]?.file_id)
         console.log(action, res, file_url)
         yield put(actionCreators.changeAvaUrl(file_url))
         yield http.Patch(api.UpdateUser, {ava_url: file_url})
